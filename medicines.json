@@ -1,0 +1,55 @@
+{
+  "meta": { "version": "0.1-demo", "updated": "2026-07-24", "note": "بيانات تجريبية للعرض فقط. تُستبدل بالبيانات الحقيقية من المختصين." },
+  "molecules": [
+    {
+      "id": "MOL-0001", "inn": "Pantoprazole", "ar": "بانتوبرازول",
+      "class": "Proton pump inhibitor", "indication": "قرحة المعدة والارتجاع الحمضي",
+      "rx": "Rx",
+      "products": [
+        { "brand": "Controloc", "strength": "40 mg", "form": "Tablet", "origin": "Germany", "availability": "Common", "price": 12000, "govs": ["بغداد","البصرة","أربيل"] },
+        { "brand": "Panto-Denk", "strength": "40 mg", "form": "Tablet", "origin": "Germany", "availability": "Common", "price": 7500, "govs": ["بغداد","النجف"] },
+        { "brand": "Pantozol", "strength": "40 mg", "form": "Tablet", "origin": "Germany", "availability": "Limited", "price": 9000, "govs": ["بغداد"] },
+        { "brand": "Zurcal", "strength": "20 mg", "form": "Tablet", "origin": "Turkey", "availability": "Common", "price": 6000, "govs": ["بغداد","البصرة","كربلاء"] }
+      ]
+    },
+    {
+      "id": "MOL-0002", "inn": "Amoxicillin", "ar": "أموكسيسيلين",
+      "class": "Penicillin antibiotic", "indication": "الالتهابات البكتيرية",
+      "rx": "Rx",
+      "products": [
+        { "brand": "Amoxil", "strength": "500 mg", "form": "Capsule", "origin": "UK", "availability": "Common", "price": 8000, "govs": ["بغداد","البصرة"] },
+        { "brand": "Hiconcil", "strength": "500 mg", "form": "Capsule", "origin": "Turkey", "availability": "Common", "price": 5500, "govs": ["بغداد","أربيل","الموصل"] },
+        { "brand": "Julphamox", "strength": "500 mg", "form": "Capsule", "origin": "UAE", "availability": "Common", "price": 4000, "govs": ["بغداد","النجف","كربلاء"] }
+      ]
+    },
+    {
+      "id": "MOL-0003", "inn": "Metformin", "ar": "ميتفورمين",
+      "class": "Biguanide antidiabetic", "indication": "السكري النوع الثاني",
+      "rx": "Rx",
+      "products": [
+        { "brand": "Glucophage", "strength": "850 mg", "form": "Tablet", "origin": "France", "availability": "Common", "price": 9000, "govs": ["بغداد","البصرة","أربيل","النجف"] },
+        { "brand": "Cidophage", "strength": "850 mg", "form": "Tablet", "origin": "Egypt", "availability": "Common", "price": 4500, "govs": ["بغداد","البصرة"] },
+        { "brand": "Diaformin", "strength": "1000 mg", "form": "Tablet", "origin": "Jordan", "availability": "Limited", "price": 6000, "govs": ["بغداد"] }
+      ]
+    },
+    {
+      "id": "MOL-0004", "inn": "Atorvastatin", "ar": "أتورفاستاتين",
+      "class": "Statin", "indication": "ارتفاع الكوليسترول",
+      "rx": "Rx",
+      "products": [
+        { "brand": "Lipitor", "strength": "20 mg", "form": "Tablet", "origin": "USA", "availability": "Common", "price": 15000, "govs": ["بغداد","أربيل"] },
+        { "brand": "Ator", "strength": "20 mg", "form": "Tablet", "origin": "Jordan", "availability": "Common", "price": 7000, "govs": ["بغداد","البصرة","النجف"] }
+      ]
+    },
+    {
+      "id": "MOL-0005", "inn": "Paracetamol", "ar": "باراسيتامول",
+      "class": "Analgesic / antipyretic", "indication": "الألم والحمى",
+      "rx": "OTC",
+      "products": [
+        { "brand": "Panadol", "strength": "500 mg", "form": "Tablet", "origin": "UK", "availability": "Common", "price": 3000, "govs": ["بغداد","البصرة","أربيل","النجف","كربلاء","الموصل"] },
+        { "brand": "Adol", "strength": "500 mg", "form": "Tablet", "origin": "UAE", "availability": "Common", "price": 2000, "govs": ["بغداد","البصرة"] },
+        { "brand": "Fevadol", "strength": "500 mg", "form": "Tablet", "origin": "KSA", "availability": "Common", "price": 2500, "govs": ["بغداد","كربلاء"] }
+      ]
+    }
+  ]
+}
