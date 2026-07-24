@@ -1,308 +1,240 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sela — Your AI Workspace for Pharmacy</title>
-  <meta name="description" content="Sela is your AI workspace for pharmacy. Ask about medicines, suppliers, offers, jobs, and more." />
+  <title>صلة — البنية الرقمية للصيدلة في العراق</title>
+  <meta name="description" content="صلة تربط الصيادلة والصيدليات وشركات الأدوية في العراق. ابحث عن دواء، بدائله، أسعاره، وتوفره." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Kufi+Arabic:wght@600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --teal-50:#EBF7F5;--teal-100:#D1F0EB;--teal-500:#10B5A6;--teal-600:#0D9488;--teal-700:#0B7A70;
+      --ink-50:#F7F9FA;--ink-100:#EEF2F4;--ink-200:#DFE5E9;--ink-300:#C3CDD4;--ink-400:#8FA0AC;--ink-500:#657687;--ink-800:#1F2937;
+      --blue-50:#EFF5FF;--blue-500:#3B7DF6;--blue-700:#1D4FB8;
+      --violet-50:#F4F1FE;--violet-500:#7C5CE0;--violet-700:#5237A8;
+      --amber-50:#FFF6E8;--amber-500:#D98A0B;--amber-700:#96600A;
+      --page:#FBFCFC;--surface:#FFFFFF;--hairline:#E6ECEF;
+      --ar:'Tajawal',system-ui,sans-serif;--la:'Plus Jakarta Sans',system-ui,sans-serif;
+    }
+    *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+    body{background:var(--page);color:var(--ink-800);font-family:var(--ar);line-height:1.7;-webkit-font-smoothing:antialiased}
+    .en{font-family:var(--la);direction:ltr;unicode-bidi:isolate;font-weight:600}
+    .page{max-width:960px;margin:0 auto;padding:0 20px 60px}
+    a{text-decoration:none;color:inherit}
+    .icon{width:22px;height:22px;display:block}
+
+    header{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+    .brand{display:flex;align-items:center;gap:10px}
+    .brand__name{display:flex;flex-direction:column;line-height:1.1}
+    .brand__arabic{font-size:18px;font-weight:700}
+    .brand__latin{font-family:var(--la);font-weight:700;font-size:14px;color:var(--teal-600)}
+    .header__actions{display:flex;gap:8px}
+    .pill-btn{display:inline-flex;align-items:center;gap:6px;height:40px;padding:0 15px;border:1px solid var(--hairline);background:var(--surface);border-radius:999px;font-family:var(--ar);font-size:14px;font-weight:500;color:var(--ink-600);cursor:pointer}
+    .pill-btn:hover{border-color:var(--teal-300);background:var(--teal-50)}
+    .pill-btn .icon{width:18px;height:18px}
+
+    .hero{text-align:center;padding:36px 0 8px}
+    .hero__badge{width:76px;height:76px;border-radius:50%;background:var(--surface);border:1px solid var(--hairline);display:flex;align-items:center;justify-content:center;margin:0 auto 22px;box-shadow:0 4px 16px rgba(16,181,166,.12)}
+    .hero__badge .icon{width:40px;height:40px}
+    .hero__title{font-size:34px;font-weight:700;letter-spacing:-.01em}
+    .hero__title-accent{color:var(--teal-500)}
+    .hero__subtitle{font-size:16px;color:var(--teal-700);font-weight:500;margin-top:6px}
+    .hero__question{color:var(--ink-500);margin-top:22px;font-size:15px}
+
+    .composer{margin:24px 0 8px}
+    .composer__card{background:var(--surface);border:1px solid var(--hairline);border-radius:16px;padding:20px;box-shadow:0 2px 12px rgba(31,41,55,.05);cursor:text;transition:border-color .15s,box-shadow .15s}
+    .composer__card:hover{border-color:var(--teal-300)}
+    .composer__row{display:flex;align-items:flex-start;gap:12px}
+    .composer__fake-input{flex:1;color:var(--ink-400);font-size:16px;padding-top:4px;line-height:1.6}
+    .composer__send{width:48px;height:48px;flex-shrink:0;border:0;border-radius:50%;background:var(--teal-500);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer}
+    .composer__send:hover{background:var(--teal-600)}
+    .composer__send .icon{width:22px;height:22px}
+    .composer__divider{height:1px;background:var(--hairline);margin:16px 0}
+    .composer__toolbar{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+    .tool-btn{display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border:0;background:transparent;border-radius:8px;font-family:var(--ar);font-size:13.5px;color:var(--ink-500);cursor:pointer}
+    .tool-btn:hover{background:var(--ink-50)}
+    .tool-btn .icon{width:18px;height:18px}
+    .tool-btn[disabled]{opacity:.5;cursor:default}
+    .soon{font-size:10px;color:var(--ink-400);border:1px solid var(--ink-200);border-radius:4px;padding:0 4px;margin-inline-start:2px}
+    .composer__sep{width:1px;height:18px;background:var(--hairline)}
+
+    .section-title{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:var(--ink-500);margin:32px 0 14px}
+    .section-title .icon{width:18px;height:18px;color:var(--teal-500)}
+
+    .chips{display:flex;gap:9px;flex-wrap:wrap}
+    .chip{display:inline-flex;align-items:center;gap:8px;height:42px;padding:0 15px;border:1px solid var(--hairline);background:var(--surface);border-radius:999px;font-family:var(--ar);font-size:14px;font-weight:500;color:var(--ink-700);cursor:pointer}
+    .chip:hover{border-color:var(--teal-300);background:var(--teal-50)}
+    .chip__ic{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .chip__ic .icon{width:15px;height:15px}
+    .ic-teal{background:var(--teal-50);color:var(--teal-600)}
+    .ic-blue{background:var(--blue-50);color:var(--blue-500)}
+    .ic-amber{background:var(--amber-50);color:var(--amber-500)}
+    .ic-violet{background:var(--violet-50);color:var(--violet-500)}
+
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+    .card{background:var(--surface);border:1px solid var(--hairline);border-radius:16px;padding:20px;display:flex;flex-direction:column;transition:transform .15s,box-shadow .15s,border-color .15s}
+    .card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(31,41,55,.09);border-color:var(--teal-300)}
+    .card__icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+    .card__icon .icon{width:26px;height:26px}
+    .ci-teal{background:var(--teal-50);color:var(--teal-600)}
+    .ci-blue{background:var(--blue-50);color:var(--blue-500)}
+    .ci-violet{background:var(--violet-50);color:var(--violet-500)}
+    .card__title{font-size:17px;font-weight:700;margin-bottom:6px}
+    .card__desc{font-size:13.5px;color:var(--ink-500);flex:1;line-height:1.65}
+    .card__cta{width:34px;height:34px;border-radius:50%;background:var(--teal-50);color:var(--teal-600);display:flex;align-items:center;justify-content:center;margin-top:16px}
+    .card__cta .icon{width:18px;height:18px}
+    .card--soon{opacity:.75}
+    .card__badge{font-size:11px;font-weight:700;color:var(--amber-700);background:var(--amber-50);border-radius:6px;padding:2px 8px;align-self:flex-start;margin-bottom:12px}
+
+    .trust{display:flex;align-items:center;gap:14px;background:var(--teal-50);border:1px solid var(--teal-100);border-radius:14px;padding:16px 20px;margin-top:32px}
+    .trust .icon{width:24px;height:24px;color:var(--teal-600)}
+    .trust__title{font-size:14px;font-weight:700}
+    .trust__sub{font-size:12.5px;color:var(--ink-500)}
+
+    footer{text-align:center;padding:28px 0 0;font-size:12px;color:var(--ink-400)}
+
+    @media(max-width:560px){
+      .hero__title{font-size:28px}
+      .header__actions .pill-btn span{display:none}
+      .pill-btn{padding:0 12px}
+    }
+  </style>
 </head>
 <body>
   <div class="page">
 
-    <!-- ===== Header ===== -->
-    <header class="header">
-      <a class="brand" href="#" aria-label="Sela home">
-        <svg class="brand__mark" viewBox="0 0 64 64" aria-hidden="true">
-          <use href="assets/logo.svg#sela-mark"></use>
+    <header>
+      <a class="brand" href="./" aria-label="صلة">
+        <svg width="34" height="34" viewBox="0 0 100 100" aria-hidden="true">
+          <path d="M62 24C42 12 20 24 20 44c0 15 13 22 27 22" stroke="#10B5A6" stroke-width="15" stroke-linecap="round" fill="none"/>
+          <path d="M38 76c20 12 42 0 42-20 0-15-13-22-27-22" stroke="#10B5A6" stroke-width="15" stroke-linecap="round" fill="none"/>
+          <path d="M50 16v24l-8 9 16 8-8 9v24" stroke="#FFFFFF" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <path d="M50 16v24l-8 9 16 8-8 9v24" stroke="#1F2937" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
         </svg>
         <span class="brand__name">
-          <span class="brand__arabic" lang="ar" dir="rtl">صلة</span>
+          <span class="brand__arabic">صلة</span>
           <span class="brand__latin">Sela</span>
         </span>
       </a>
-
-      <nav class="header__actions" aria-label="Utility">
-        <button class="pill-btn" type="button">
-          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/>
-            <path d="M9.6 9.3a2.5 2.5 0 1 1 3.4 2.9c-.7.3-1 .8-1 1.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-            <circle cx="12" cy="16.8" r="1.1" fill="currentColor"/>
-          </svg>
-          Help
-        </button>
-        <button class="pill-btn" type="button">
-          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/>
-            <path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          History
-        </button>
+      <nav class="header__actions">
+        <a class="pill-btn" href="search.html">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>
+          <span>بحث الأدوية</span>
+        </a>
       </nav>
     </header>
 
-    <!-- ===== Hero ===== -->
-    <main class="main">
+    <main>
       <section class="hero">
-        <div class="hero__badge-wrap">
-          <svg class="sparkle sparkle--left" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M12 2l2.2 7.8L22 12l-7.8 2.2L12 22l-2.2-7.8L2 12l7.8-2.2z" fill="currentColor"/>
-          </svg>
-          <div class="hero__badge">
-            <svg class="hero__badge-mark" viewBox="0 0 64 64" aria-hidden="true">
-              <use href="assets/logo.svg#sela-mark"></use>
-            </svg>
-          </div>
-          <svg class="sparkle sparkle--right" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M12 2l2.2 7.8L22 12l-7.8 2.2L12 22l-2.2-7.8L2 12l7.8-2.2z" fill="currentColor"/>
+        <div class="hero__badge">
+          <svg class="icon" viewBox="0 0 100 100" aria-hidden="true">
+            <path d="M62 24C42 12 20 24 20 44c0 15 13 22 27 22" stroke="#10B5A6" stroke-width="15" stroke-linecap="round" fill="none"/>
+            <path d="M38 76c20 12 42 0 42-20 0-15-13-22-27-22" stroke="#10B5A6" stroke-width="15" stroke-linecap="round" fill="none"/>
+            <path d="M50 16v24l-8 9 16 8-8 9v24" stroke="#1F2937" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
           </svg>
         </div>
-
-        <h1 class="hero__title">Welcome to <span class="hero__title-accent">Sela</span></h1>
-        <p class="hero__subtitle">Your AI Workspace for Pharmacy</p>
-
-        <p class="hero__greeting">
-          <span id="greeting-emoji" aria-hidden="true">☀️</span>
-          <strong><span id="greeting-text">Good morning</span>, Ahmed.</strong>
-        </p>
-        <p class="hero__question">What would you like to accomplish today?</p>
+        <h1 class="hero__title">صِلة</h1>
+        <p class="hero__subtitle">البنية الرقمية للصيدلة في العراق</p>
+        <p class="hero__question">شنو تريد تسوي اليوم؟</p>
       </section>
 
-      <!-- ===== Prompt composer ===== -->
-      <section class="composer" aria-label="Ask Sela">
-        <form class="composer__card" id="composer-form">
-          <div class="composer__input-row">
-            <label class="visually-hidden" for="prompt">Ask Sela</label>
-            <textarea id="prompt" class="composer__input" rows="3"
-              placeholder="Ask about medicines, suppliers, offers, jobs,&#10;or anything in pharmacy..."></textarea>
-            <button class="composer__send" type="submit" aria-label="Send">
-              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M3.4 11.05 20.2 4.1c.9-.37 1.8.53 1.43 1.43l-6.95 16.8c-.4.97-1.8.9-2.1-.1l-1.9-6.3a1.1 1.1 0 0 0-.73-.73l-6.3-1.9c-1-.3-1.07-1.7-.1-2.1Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
-                <path d="M10.8 13.2 14.6 9.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-              </svg>
-            </button>
+      <section class="composer" aria-label="ابحث في صلة">
+        <a class="composer__card" href="search.html" style="display:block">
+          <div class="composer__row">
+            <div class="composer__fake-input">ابحث عن دواء، بديله، سعره، وتوفره…</div>
+            <span class="composer__send" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>
+            </span>
           </div>
-
-          <div class="composer__attachments" id="attachments" hidden></div>
-
-          <div class="composer__divider" role="presentation"></div>
-
+          <div class="composer__divider"></div>
           <div class="composer__toolbar">
-            <button class="tool-btn" type="button" id="btn-voice">
-              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="9" y="3" width="6" height="11" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/>
-                <path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-              </svg>
-              <span id="voice-label">Voice</span>
-            </button>
-            <span class="composer__sep" role="presentation"></span>
-            <button class="tool-btn" type="button" id="btn-scan">
-              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M4 8V6a2 2 0 0 1 2-2h2M16 4h2a2 2 0 0 1 2 2v2M20 16v2a2 2 0 0 1-2 2h-2M8 20H6a2 2 0 0 1-2-2v-2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-                <path d="M12 9v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-              </svg>
-              Scan Barcode
-            </button>
-            <span class="composer__sep" role="presentation"></span>
-            <button class="tool-btn" type="button" id="btn-pdf">
-              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="m20.5 12.6-7.8 7.8a5.1 5.1 0 0 1-7.2-7.2l8.5-8.5a3.4 3.4 0 0 1 4.8 4.8l-8.5 8.5a1.7 1.7 0 0 1-2.4-2.4l7.8-7.8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              Upload PDF
-            </button>
-            <input type="file" id="pdf-input" accept="application/pdf,.pdf" multiple hidden />
+            <span class="tool-btn" role="presentation">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3"/></svg>
+              الصوت <span class="soon">قريباً</span>
+            </span>
+            <span class="composer__sep"></span>
+            <span class="tool-btn" role="presentation">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 8V6a2 2 0 0 1 2-2h2M16 4h2a2 2 0 0 1 2 2v2M20 16v2a2 2 0 0 1-2 2h-2M8 20H6a2 2 0 0 1-2-2v-2"/><path d="M12 9v6"/></svg>
+              مسح الباركود <span class="soon">قريباً</span>
+            </span>
           </div>
-        </form>
+        </a>
       </section>
 
-      <!-- ===== Suggestion chips ===== -->
-      <section class="suggestions" aria-labelledby="suggestions-title">
-        <h2 class="section-title" id="suggestions-title">
-          <svg class="icon section-title__icon section-title__icon--teal" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M10 3l1.7 5.6L17 10l-5.3 1.4L10 17l-1.7-5.6L3 10l5.3-1.4zM18.5 14l.9 2.8 2.6.9-2.6.9-.9 2.8-.9-2.8-2.6-.9 2.6-.9z" fill="currentColor"/>
-          </svg>
-          Try asking Sela
+      <section class="suggestions">
+        <h2 class="section-title">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3l1.7 5.6L17 10l-5.3 1.4L10 17l-1.7-5.6L3 10l5.3-1.4z" fill="currentColor"/></svg>
+          جرّب البحث عن
         </h2>
-
         <div class="chips">
-          <button class="chip" type="button" data-prompt="Find Ozempic — availability, suppliers and pricing">
-            <span class="chip__icon chip__icon--teal">
-              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="3.2" y="9.2" width="17.6" height="5.6" rx="2.8" transform="rotate(-45 12 12)" fill="none" stroke="currentColor" stroke-width="1.8"/>
-                <path d="M8.6 15.4 15.4 8.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-              </svg>
-            </span>
-            Find Ozempic
-          </button>
-
-          <button class="chip" type="button" data-prompt="Show me today's offers from distributors">
-            <span class="chip__icon chip__icon--orange">
-              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12 2.5c.6 3-0.6 4.6-2 6.1C8.4 10.3 7 12 7 14.5A5 5 0 0 0 17 15c0-2-1-3.2-1.8-4.2-.3 1-.8 1.6-1.7 2.2.4-3.6-.4-7.6-1.5-10.5Z" fill="currentColor"/>
-              </svg>
-            </span>
-            Today's offers
-          </button>
-
-          <button class="chip" type="button" data-prompt="Find Hikma Pharmaceuticals products and contacts">
-            <span class="chip__icon chip__icon--blue">
-              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="5" y="4" width="10" height="16" rx="1" fill="none" stroke="currentColor" stroke-width="1.7"/>
-                <path d="M15 9h4v11h-4M2.8 20h18.4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-                <path d="M8 8h1.5M10.8 8h1.5M8 11.5h1.5M10.8 11.5h1.5M8 15h1.5M10.8 15h1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-              </svg>
-            </span>
-            Find Hikma
-          </button>
-
-          <button class="chip" type="button" data-prompt="Give me pharmacy market insights for this month">
-            <span class="chip__icon chip__icon--green">
-              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M3.5 17.5 9 12l3.5 3.5L20.5 7" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M15.5 7h5v5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-            Market insights
-          </button>
-
-          <button class="chip" type="button" data-prompt="Which pharmacy conferences are happening this week?">
-            <span class="chip__icon chip__icon--teal">
-              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12 4 2.5 8.5 12 13l9.5-4.5z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-                <path d="M6.5 10.8v4.4c0 1.2 2.5 2.6 5.5 2.6s5.5-1.4 5.5-2.6v-4.4M21.5 9v5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-              </svg>
-            </span>
-            Conferences this week
-          </button>
-
-          <button class="chip" type="button" data-prompt="Any recent drug recalls I should know about?">
-            <span class="chip__icon chip__icon--amber">
-              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M10.4 4.4 2.9 17.4A1.9 1.9 0 0 0 4.5 20.2h15a1.9 1.9 0 0 0 1.6-2.8l-7.5-13a1.9 1.9 0 0 0-3.2 0Z" fill="currentColor" opacity=".95"/>
-                <path d="M12 9.2v4.4" stroke="#fff" stroke-width="1.9" stroke-linecap="round"/>
-                <circle cx="12" cy="16.7" r="1.1" fill="#fff"/>
-              </svg>
-            </span>
-            Drug recalls
-          </button>
+          <a class="chip" href="search.html?q=Pantoprazole">
+            <span class="chip__ic ic-teal"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.2" y="9.2" width="17.6" height="5.6" rx="2.8" transform="rotate(-45 12 12)"/></svg></span>
+            <span class="en">Pantoprazole</span>
+          </a>
+          <a class="chip" href="search.html?q=Amoxicillin">
+            <span class="chip__ic ic-blue"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.2" y="9.2" width="17.6" height="5.6" rx="2.8" transform="rotate(-45 12 12)"/></svg></span>
+            <span class="en">Amoxicillin</span>
+          </a>
+          <a class="chip" href="search.html?q=Metformin">
+            <span class="chip__ic ic-amber"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.2" y="9.2" width="17.6" height="5.6" rx="2.8" transform="rotate(-45 12 12)"/></svg></span>
+            <span class="en">Metformin</span>
+          </a>
+          <a class="chip" href="search.html?q=Panadol">
+            <span class="chip__ic ic-violet"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.2" y="9.2" width="17.6" height="5.6" rx="2.8" transform="rotate(-45 12 12)"/></svg></span>
+            <span class="en">Panadol</span>
+          </a>
         </div>
       </section>
 
-      <!-- ===== Frequent actions ===== -->
-      <section class="actions" aria-labelledby="actions-title">
-        <h2 class="section-title" id="actions-title">
-          <svg class="icon section-title__icon section-title__icon--teal" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M12 2.8l2.8 5.7 6.3.9-4.6 4.4 1.1 6.3L12 17.1l-5.6 3-1.1-6.3L.7 9.4l6.3-.9z" fill="currentColor" transform="translate(1.3 0.6) scale(.92)"/>
-          </svg>
-          Most frequent actions
+      <section class="actions">
+        <h2 class="section-title">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.7 6.3.9-4.6 4.4 1.1 6.3L12 17.1l-5.6 3-1.1-6.3L.7 9.4l6.3-.9z" fill="currentColor" transform="scale(.92) translate(1 0.4)"/></svg>
+          الخدمات
         </h2>
-
         <div class="cards">
-          <a class="card" href="#find-medicine">
-            <span class="card__icon card__icon--teal">
-              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="3.2" y="9.2" width="17.6" height="5.6" rx="2.8" transform="rotate(-45 12 12)" fill="none" stroke="currentColor" stroke-width="1.8"/>
-                <path d="M8.6 15.4 15.4 8.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-              </svg>
-            </span>
-            <h3 class="card__title">Find Medicine</h3>
-            <p class="card__desc">Search any medicine and discover suppliers, alternatives, and availability.</p>
-            <span class="card__cta card__cta--teal" aria-hidden="true">
-              <svg class="icon" viewBox="0 0 24 24"><path d="M5 12h13m-5.5-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
+          <a class="card" href="search.html">
+            <span class="card__icon ci-teal"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4" stroke-linecap="round"/></svg></span>
+            <h3 class="card__title">ابحث عن دواء</h3>
+            <p class="card__desc">ابحث عن أي دواء واكتشف بدائله المتوفرة، أسعارها، وتوفرها.</p>
+            <span class="card__cta"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H6m6.5 6-6-6 6-6" transform="scale(-1 1) translate(-24 0)"/></svg></span>
           </a>
-
-          <a class="card" href="#expiry-exchange">
-            <span class="card__icon card__icon--teal">
-              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M19.5 9A8 8 0 0 0 5.6 6.6L4 8.4M4.5 15a8 8 0 0 0 13.9 2.4l1.6-1.8" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M4 3.8v4.6h4.6M20 20.2v-4.6h-4.6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-            <h3 class="card__title">Expiry Exchange</h3>
-            <p class="card__desc">Trade near-expiry medicines with trusted pharmacies anywhere in Iraq.</p>
-            <span class="card__cta card__cta--teal" aria-hidden="true">
-              <svg class="icon" viewBox="0 0 24 24"><path d="M5 12h13m-5.5-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </a>
-
-          <a class="card" href="#hire-a-pharmacist">
-            <span class="card__icon card__icon--purple">
-              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-                <circle cx="12" cy="8.2" r="3.6" fill="none" stroke="currentColor" stroke-width="1.8"/>
-                <path d="M4.8 20a7.2 7.2 0 0 1 14.4 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-              </svg>
-            </span>
-            <h3 class="card__title">Hire a Pharmacist</h3>
-            <p class="card__desc">Find qualified and verified pharmacists for your pharmacy.</p>
-            <span class="card__cta card__cta--purple" aria-hidden="true">
-              <svg class="icon" viewBox="0 0 24 24"><path d="M5 12h13m-5.5-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </a>
-
-          <a class="card" href="#find-a-job">
-            <span class="card__icon card__icon--blue">
-              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="3.5" y="7.5" width="17" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/>
-                <path d="M9 7.5V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1.5M3.5 12.5h17" fill="none" stroke="currentColor" stroke-width="1.8"/>
-                <path d="M10.6 12.5h2.8v2h-2.8z" fill="currentColor"/>
-              </svg>
-            </span>
-            <h3 class="card__title">Find a Job</h3>
-            <p class="card__desc">Discover pharmacy career opportunities that match your skills.</p>
-            <span class="card__cta card__cta--blue" aria-hidden="true">
-              <svg class="icon" viewBox="0 0 24 24"><path d="M5 12h13m-5.5-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </a>
+          <div class="card card--soon">
+            <span class="card__badge">قريباً</span>
+            <span class="card__icon ci-teal"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 9A8 8 0 0 0 5.6 6.6L4 8.4M4.5 15a8 8 0 0 0 13.9 2.4l1.6-1.8"/><path d="M4 3.8v4.6h4.6M20 20.2v-4.6h-4.6"/></svg></span>
+            <h3 class="card__title">تبادل النواقص</h3>
+            <p class="card__desc">تبادل الأدوية قريبة انتهاء الصلاحية مع صيدليات موثوقة بالعراق.</p>
+          </div>
+          <div class="card card--soon">
+            <span class="card__badge">قريباً</span>
+            <span class="card__icon ci-violet"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8.2" r="3.6"/><path d="M4.8 20a7.2 7.2 0 0 1 14.4 0" stroke-linecap="round"/></svg></span>
+            <h3 class="card__title">وظائف الصيادلة</h3>
+            <p class="card__desc">فرص عمل للصيادلة، وربط الصيدليات بالكفاءات الموثقة.</p>
+          </div>
+          <div class="card card--soon">
+            <span class="card__badge">قريباً</span>
+            <span class="card__icon ci-blue"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="7.5" width="17" height="12" rx="2"/><path d="M9 7.5V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1.5M3.5 12.5h17"/></svg></span>
+            <h3 class="card__title">دليل الشركات</h3>
+            <p class="card__desc">دليل شركات الأدوية والموزعين والمكاتب العلمية في العراق.</p>
+          </div>
         </div>
       </section>
 
-      <!-- ===== Trust banner ===== -->
       <section class="trust">
-        <span class="trust__icon" aria-hidden="true">
-          <svg class="icon" viewBox="0 0 24 24">
-            <path d="M12 2.8 4.5 5.6v5.2c0 4.8 3.2 8.6 7.5 10.4 4.3-1.8 7.5-5.6 7.5-10.4V5.6Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
-            <path d="m8.8 11.8 2.3 2.3 4.1-4.4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+        <span aria-hidden="true">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 2.8 4.5 5.6v5.2c0 4.8 3.2 8.6 7.5 10.4 4.3-1.8 7.5-5.6 7.5-10.4V5.6Z"/><path d="m8.8 11.8 2.3 2.3 4.1-4.4" stroke-linecap="round"/></svg>
         </span>
-        <div class="trust__text">
-          <p class="trust__title">Trusted by pharmacists across Iraq and beyond</p>
-          <p class="trust__sub">Secure. Reliable. Built for Pharmacy.</p>
+        <div>
+          <p class="trust__title">نبنيها للصيادلة، مع الصيادلة</p>
+          <p class="trust__sub">كل معلومة موثّقة بمصدر. آمنة. مبنية للصيدلة.</p>
         </div>
       </section>
 
-      <!-- ===== Footer ===== -->
-      <footer class="footer">
-        <p>
-          Powered by live data from pharmacies, pharmaceutical companies,
-          distributors, conferences, and trusted medical sources.
-          <svg class="icon footer__info" viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/>
-            <path d="M12 11v5.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-            <circle cx="12" cy="7.8" r="1.1" fill="currentColor"/>
-          </svg>
-        </p>
+      <footer>
+        صلة · نموذج أولي · قيد التطوير
       </footer>
     </main>
   </div>
-
-  <!-- ===== Barcode scanner modal ===== -->
-  <div class="scanner" id="scanner" hidden role="dialog" aria-modal="true" aria-labelledby="scanner-title">
-    <div class="scanner__panel">
-      <h2 class="scanner__title" id="scanner-title">Scan a barcode</h2>
-      <div class="scanner__viewport">
-        <video class="scanner__video" id="scanner-video" playsinline muted></video>
-        <div class="scanner__frame" aria-hidden="true"></div>
-      </div>
-      <p class="scanner__status" id="scanner-status">Starting camera…</p>
-      <button class="pill-btn scanner__cancel" type="button" id="scanner-cancel">Cancel</button>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
 </body>
 </html>
