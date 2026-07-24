@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>صلة · بحث الأدوية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&family=Plus+Jakarta+Sans:wght@500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --teal-50:#EBF7F5;--teal-100:#D1F0EB;--teal-500:#10B5A6;--teal-600:#0D9488;--teal-700:#0B7A70;
+  --ink-50:#F7F9FA;--ink-100:#EEF2F4;--ink-200:#DFE5E9;--ink-300:#C3CDD4;--ink-400:#8FA0AC;--ink-500:#657687;--ink-800:#1F2937;
+  --green-50:#EDF8EF;--green-500:#2E9E52;--green-700:#1D6C39;
+  --amber-50:#FFF6E8;--amber-500:#D98A0B;--amber-700:#96600A;
+  --red-50:#FDEEEE;--red-500:#D63A3A;--red-700:#9B2626;
+  --page:#FBFCFC;--surface:#FFFFFF;--hairline:#E6ECEF;
+  --ar:'Tajawal',system-ui,sans-serif;--la:'Plus Jakarta Sans',system-ui,sans-serif;--mo:'IBM Plex Mono',monospace;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--page);color:var(--ink-800);font-family:var(--ar);line-height:1.75;font-size:15px;-webkit-font-smoothing:antialiased}
+.app{max-width:440px;margin:0 auto;min-height:100vh;background:var(--page);display:flex;flex-direction:column}
+.en{font-family:var(--la);direction:ltr;unicode-bidi:isolate;font-weight:600}
+.num{font-family:var(--mo);direction:ltr;unicode-bidi:isolate;font-variant-numeric:tabular-nums}
+
+header{padding:16px 18px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:rgba(251,252,252,.92);backdrop-filter:blur(8px);z-index:10;border-bottom:1px solid var(--hairline)}
+.brand{display:flex;align-items:center;gap:8px}
+.brand b{font-size:17px;font-weight:500}
+.offline-dot{width:8px;height:8px;border-radius:50%;background:var(--green-500)}
+.offline-dot.off{background:var(--ink-400)}
+
+.searchwrap{padding:18px}
+.searchbar{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--ink-300);border-radius:12px;height:52px;padding:0 15px;transition:border-color .12s,box-shadow .12s}
+.searchbar:focus-within{border-color:var(--teal-500);box-shadow:0 0 0 3px var(--teal-100)}
+.searchbar input{border:0;outline:0;background:transparent;flex:1;font-family:var(--ar);font-size:16px;color:var(--ink-800)}
+.searchbar input::placeholder{color:var(--ink-400)}
+.searchbar svg{flex-shrink:0}
+.clearbtn{border:0;background:transparent;color:var(--ink-400);cursor:pointer;padding:4px;display:none}
+.clearbtn.show{display:block}
+
+.hint{font-size:12px;color:var(--ink-400);margin:10px 2px 0}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.chip{border:1px solid var(--hairline);background:var(--surface);border-radius:999px;height:36px;padding:0 14px;font-family:var(--la);font-size:13px;font-weight:600;color:var(--ink-500);cursor:pointer;direction:ltr}
+.chip:active{background:var(--teal-50);border-color:var(--teal-500);color:var(--teal-700)}
+
+.results{padding:0 18px 40px;flex:1}
+
+.mol{background:var(--surface);border:1px solid var(--hairline);border-radius:16px;padding:18px;margin-bottom:14px;box-shadow:0 1px 2px rgba(31,41,55,.05)}
+.mol-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:4px}
+.mol-inn{font-size:20px;font-weight:700}
+.mol-ar{font-size:13px;color:var(--ink-500);margin-top:2px}
+.mol-class{font-size:12px;color:var(--ink-400);margin-top:6px}
+.rxbadge{flex-shrink:0;font-size:11px;font-weight:700;padding:3px 9px;border-radius:8px;font-family:var(--la)}
+.rx-rx{background:var(--amber-50);color:var(--amber-700)}
+.rx-otc{background:var(--green-50);color:var(--green-700)}
+.indication{background:var(--ink-50);border-radius:8px;padding:9px 12px;font-size:13px;color:var(--ink-500);margin:12px 0 16px}
+
+.altlabel{font-size:12px;font-weight:500;color:var(--ink-400);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.altlabel .count{background:var(--teal-50);color:var(--teal-700);border-radius:999px;padding:1px 8px;font-family:var(--mo);font-size:11px}
+
+.prod{display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--ink-100)}
+.prod-main{flex:1;min-width:0}
+.prod-brand{font-family:var(--la);direction:ltr;font-weight:600;font-size:15px;color:var(--ink-800)}
+.prod-sub{font-size:12px;color:var(--ink-400);margin-top:2px}
+.prod-sub .num{color:var(--ink-500)}
+.prod-right{text-align:left;flex-shrink:0}
+.prod-price{font-family:var(--mo);direction:ltr;font-weight:500;font-size:15px;color:var(--ink-800)}
+.prod-price .cur{font-size:11px;color:var(--ink-400);margin-inline-start:2px}
+.avail{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:500;margin-top:4px}
+.avail .d{width:6px;height:6px;border-radius:50%}
+.av-Common{color:var(--green-700)} .av-Common .d{background:var(--green-500)}
+.av-Limited{color:var(--amber-700)} .av-Limited .d{background:var(--amber-500)}
+.av-Rare{color:var(--red-700)} .av-Rare .d{background:var(--red-500)}
+.av-Unavailable{color:var(--ink-400)} .av-Unavailable .d{background:var(--ink-400)}
+
+.cheapest{font-size:11px;color:var(--green-700);background:var(--green-50);border-radius:6px;padding:1px 7px;font-weight:500;margin-inline-start:6px}
+
+.state{text-align:center;padding:70px 24px;color:var(--ink-400)}
+.state svg{margin-bottom:16px}
+.state h3{font-size:16px;font-weight:500;color:var(--ink-500);margin:0 0 6px}
+.state p{font-size:13px;margin:0;max-width:260px;margin-inline:auto;line-height:1.7}
+
+.skel{background:var(--surface);border:1px solid var(--hairline);border-radius:16px;padding:18px;margin-bottom:14px}
+.shimmer{background:linear-gradient(90deg,var(--ink-100) 25%,var(--ink-50) 50%,var(--ink-100) 75%);background-size:200% 100%;animation:sh 1.3s infinite;border-radius:6px}
+@keyframes sh{0%{background-position:200% 0}100%{background-position:-200% 0}}
+@media(prefers-reduced-motion:reduce){.shimmer{animation:none}}
+
+.offline-banner{background:var(--amber-50);border-bottom:1px solid #FBDFA6;color:var(--amber-700);font-size:12.5px;padding:8px 18px;text-align:center;display:none}
+.offline-banner.show{display:block}
+
+footer{text-align:center;padding:20px;font-size:11px;color:var(--ink-400);border-top:1px solid var(--hairline)}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <div class="offline-banner" id="offlineBanner">أنت غير متصل. تظهر آخر البيانات المحفوظة.</div>
+
+  <header>
+    <div class="brand">
+      <svg width="26" height="26" viewBox="0 0 100 100" aria-hidden="true">
+        <path d="M62 24C42 12 20 24 20 44c0 15 13 22 27 22" stroke="#10B5A6" stroke-width="16" stroke-linecap="round" fill="none"/>
+        <path d="M38 76c20 12 42 0 42-20 0-15-13-22-27-22" stroke="#10B5A6" stroke-width="16" stroke-linecap="round" fill="none"/>
+      </svg>
+      <b>صلة</b>
+    </div>
+    <div class="offline-dot" id="statusDot" title="متصل"></div>
+  </header>
+
+  <div class="searchwrap">
+    <div class="searchbar">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8FA0AC" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>
+      <input id="q" type="text" inputmode="search" autocomplete="off" placeholder="ابحث عن دواء… Amoxicillin" aria-label="ابحث عن دواء">
+      <button class="clearbtn" id="clear" aria-label="مسح">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <p class="hint">اكتب الاسم التجاري أو المادة الفعالة، بالإنجليزية أو العربية</p>
+    <div class="chips" id="chips"></div>
+  </div>
+
+  <div class="results" id="results"></div>
+
+  <footer>صلة · نموذج أولي · بيانات تجريبية للعرض</footer>
+</div>
+
+<script>
+const DATA_URL = "medicines.json";
+let DB = null;
+
+const $ = s => document.querySelector(s);
+const results = $("#results"), input = $("#q"), clearBtn = $("#clear");
+
+// ── connectivity ──
+function updateNet(){
+  const off = !navigator.onLine;
+  $("#offlineBanner").classList.toggle("show", off);
+  $("#statusDot").classList.toggle("off", off);
+  $("#statusDot").title = off ? "غير متصل" : "متصل";
+}
+window.addEventListener("online", updateNet);
+window.addEventListener("offline", updateNet);
+updateNet();
+
+// ── states ──
+function showEmpty(){
+  results.innerHTML = `
+   <div class="state">
+     <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#C3CDD4" stroke-width="1.5" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>
+     <h3>ابدأ بالبحث</h3>
+     <p>اكتب اسم أي دواء لتشوف البدائل المتوفرة بنفس المادة الفعالة، أسعارها، وتوفرها.</p>
+   </div>`;
+}
+function showLoading(){
+  let s = "";
+  for(let i=0;i<2;i++) s += `
+   <div class="skel">
+     <div class="shimmer" style="height:22px;width:55%;margin-bottom:10px"></div>
+     <div class="shimmer" style="height:13px;width:35%;margin-bottom:18px"></div>
+     <div class="shimmer" style="height:40px;width:100%;margin-bottom:8px"></div>
+     <div class="shimmer" style="height:40px;width:100%"></div>
+   </div>`;
+  results.innerHTML = s;
+}
+function showError(){
+  results.innerHTML = `
+   <div class="state">
+     <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#D63A3A" stroke-width="1.5" stroke-linecap="round"><path d="M12 9v4M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg>
+     <h3>تعذّر تحميل البيانات</h3>
+     <p>تأكد من اتصالك بالإنترنت وحاول مرة ثانية.</p>
+   </div>`;
+}
+function showNoResult(term){
+  results.innerHTML = `
+   <div class="state">
+     <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#C3CDD4" stroke-width="1.5" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4M8 11h6"/></svg>
+     <h3>ماكو نتيجة لـ "${term}"</h3>
+     <p>جرّب اسم آخر، أو تأكد من الإملاء. إذا الدواء موجود بالسوق وما لگيته، بلّغنا نضيفه.</p>
+   </div>`;
+}
+
+// ── render ──
+const availText = {Common:"متوفر",Limited:"محدود",Rare:"نادر",Unavailable:"غير متوفر"};
+function fmt(n){ return n.toLocaleString("en-US"); }
+
+function render(mols, term){
+  if(!mols.length){ showNoResult(term); return; }
+  results.innerHTML = mols.map(m=>{
+    const sorted = [...m.products].sort((a,b)=>a.price-b.price);
+    const min = sorted[0].price;
+    const rows = sorted.map(p=>{
+      const cheap = p.price===min && sorted.length>1 ? `<span class="cheapest">الأرخص</span>` : "";
+      return `
+       <div class="prod">
+         <div class="prod-main">
+           <div class="prod-brand">${p.brand}${cheap}</div>
+           <div class="prod-sub"><span class="num">${p.strength}</span> · ${p.form} · ${p.origin}</div>
+         </div>
+         <div class="prod-right">
+           <div class="prod-price">${fmt(p.price)}<span class="cur">د.ع</span></div>
+           <span class="avail av-${p.availability}"><span class="d"></span>${availText[p.availability]||p.availability}</span>
+         </div>
+       </div>`;
+    }).join("");
+    return `
+     <div class="mol">
+       <div class="mol-head">
+         <div>
+           <div class="mol-inn en">${m.inn}</div>
+           <div class="mol-ar">${m.ar}</div>
+           <div class="mol-class en" style="font-family:var(--la);font-weight:500">${m.class}</div>
+         </div>
+         <span class="rxbadge ${m.rx==='Rx'?'rx-rx':'rx-otc'}">${m.rx}</span>
+       </div>
+       <div class="indication">${m.indication}</div>
+       <div class="altlabel">البدائل المتوفرة <span class="count num">${m.products.length}</span></div>
+       ${rows}
+     </div>`;
+  }).join("");
+}
+
+// ── search ──
+function search(term){
+  term = term.trim().toLowerCase();
+  if(!term){ showEmpty(); return; }
+  if(!DB){ showLoading(); return; }
+  const hits = DB.molecules.filter(m=>{
+    if(m.inn.toLowerCase().includes(term)) return true;
+    if(m.ar.includes(term)) return true;
+    return m.products.some(p=>p.brand.toLowerCase().includes(term));
+  });
+  render(hits, term);
+}
+
+let t;
+input.addEventListener("input", ()=>{
+  clearBtn.classList.toggle("show", input.value.length>0);
+  clearTimeout(t);
+  const v = input.value;
+  if(v.trim()) showLoadingDebounced();
+  t = setTimeout(()=>search(v), 220);
+});
+let loadingShown=false;
+function showLoadingDebounced(){ if(!loadingShown){ loadingShown=true; } }
+input.addEventListener("input",()=>{ loadingShown=false; });
+
+clearBtn.addEventListener("click", ()=>{
+  input.value=""; clearBtn.classList.remove("show"); input.focus(); showEmpty();
+});
+
+// ── suggestion chips ──
+const suggestions = ["Pantoprazole","Amoxicillin","Metformin","Panadol","Lipitor"];
+$("#chips").innerHTML = suggestions.map(s=>`<button class="chip">${s}</button>`).join("");
+$("#chips").addEventListener("click", e=>{
+  const b = e.target.closest(".chip"); if(!b) return;
+  input.value = b.textContent; clearBtn.classList.add("show"); search(b.textContent);
+});
+
+// ── load data ──
+showEmpty();
+fetch(DATA_URL)
+  .then(r=>{ if(!r.ok) throw new Error(); return r.json(); })
+  .then(d=>{ DB=d; if(input.value.trim()) search(input.value); })
+  .catch(()=>{ if(input.value.trim()) showError(); });
+</script>
+</body>
+</html>
