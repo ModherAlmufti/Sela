@@ -1,0 +1,150 @@
+/* Sela design tokens v1.0 — July 2026
+   Drop into the project root and import once.
+   Build RTL-first: use logical properties, never margin-left / padding-right. */
+
+:root {
+  /* ── Brand: teal ────────────────────────────────── */
+  --sela-teal-50:  #EBF7F5;
+  --sela-teal-100: #D1F0EB;
+  --sela-teal-200: #A8E6DF;
+  --sela-teal-300: #6FD5C9;
+  --sela-teal-400: #2FC4B4;
+  --sela-teal-500: #10B5A6;  /* primary */
+  --sela-teal-600: #0D9488;  /* hover */
+  --sela-teal-700: #0B7A70;  /* link text on white */
+  --sela-teal-800: #085F58;
+  --sela-teal-900: #06403C;
+
+  /* ── Ink: text, surface, structure ──────────────── */
+  --sela-ink-50:  #F7F9FA;
+  --sela-ink-100: #EEF2F4;
+  --sela-ink-200: #DFE5E9;
+  --sela-ink-300: #C3CDD4;
+  --sela-ink-400: #8FA0AC;
+  --sela-ink-500: #657687;
+  --sela-ink-600: #48586A;
+  --sela-ink-700: #33455A;
+  --sela-ink-800: #1F2937;  /* body text */
+  --sela-ink-900: #121A24;
+
+  /* ── Domain colors: meaning, not decoration ─────── */
+  /* blue = jobs & career */
+  --sela-blue-50:  #EFF5FF;
+  --sela-blue-200: #BFD6FE;
+  --sela-blue-500: #3B7DF6;
+  --sela-blue-700: #1D4FB8;
+  /* violet = people & hiring */
+  --sela-violet-50:  #F4F1FE;
+  --sela-violet-200: #D6CCFA;
+  --sela-violet-500: #7C5CE0;
+  --sela-violet-700: #5237A8;
+  /* amber = market, offers, expiry */
+  --sela-amber-50:  #FFF6E8;
+  --sela-amber-200: #FBDFA6;
+  --sela-amber-500: #D98A0B;
+  --sela-amber-700: #96600A;
+  /* green = in stock, verified, success */
+  --sela-green-50:  #EDF8EF;
+  --sela-green-200: #BCE5C4;
+  --sela-green-500: #2E9E52;
+  --sela-green-700: #1D6C39;
+  /* red = recalls, alerts, destructive */
+  --sela-red-50:  #FDEEEE;
+  --sela-red-200: #F6C4C4;
+  --sela-red-500: #D63A3A;
+  --sela-red-700: #9B2626;
+
+  /* ── Semantic aliases ───────────────────────────── */
+  --sela-bg-page:       #FBFCFC;
+  --sela-bg-surface:    #FFFFFF;
+  --sela-bg-subtle:     var(--sela-ink-50);
+  --sela-border:        #E6ECEF;
+  --sela-border-strong: var(--sela-ink-300);
+  --sela-text:          var(--sela-ink-800);
+  --sela-text-muted:    var(--sela-ink-500);
+  --sela-text-faint:    var(--sela-ink-400);
+  --sela-link:          var(--sela-teal-700);
+  --sela-focus:         var(--sela-teal-500);
+
+  /* ── Type ───────────────────────────────────────── */
+  --sela-font-ar:   'Tajawal', system-ui, sans-serif;
+  --sela-font-la:   'Plus Jakarta Sans', system-ui, sans-serif;
+  --sela-font-data: 'IBM Plex Mono', monospace;
+
+  --sela-text-display: 40px;
+  --sela-text-h1:      30px;
+  --sela-text-h2:      22px;
+  --sela-text-h3:      17px;
+  --sela-text-body:    15px;
+  --sela-text-small:   13px;
+  --sela-text-caption: 11.5px;
+
+  --sela-leading-la: 1.65;
+  --sela-leading-ar: 1.75;
+
+  /* ── Space: 4px base ────────────────────────────── */
+  --sela-space-1:  4px;
+  --sela-space-2:  8px;
+  --sela-space-3:  12px;
+  --sela-space-4:  16px;
+  --sela-space-6:  24px;
+  --sela-space-8:  32px;
+  --sela-space-12: 48px;
+  --sela-space-16: 64px;
+
+  /* ── Radius ─────────────────────────────────────── */
+  --sela-radius-sm:   8px;   /* buttons, inputs, badges */
+  --sela-radius-md:   12px;  /* cards, banners */
+  --sela-radius-lg:   16px;  /* panels, modals */
+  --sela-radius-pill: 999px; /* chips, avatars */
+
+  /* ── Elevation ──────────────────────────────────── */
+  --sela-shadow-1: 0 1px 2px rgba(31,41,55,.05);
+  --sela-shadow-2: 0 2px 8px rgba(31,41,55,.07);
+  --sela-shadow-3: 0 8px 24px rgba(31,41,55,.09);
+
+  /* ── Controls ───────────────────────────────────── */
+  --sela-control-height: 44px;
+  --sela-sidebar-width:  248px;
+  --sela-sidebar-collapsed: 68px;
+  --sela-container-max:  1200px;
+
+  /* ── Motion ─────────────────────────────────────── */
+  --sela-ease:      cubic-bezier(.2, 0, 0, 1);
+  --sela-dur-hover: 120ms;
+  --sela-dur-panel: 180ms;
+  --sela-dur-modal: 240ms;
+  --sela-dur-page:  320ms;
+
+  /* ── Breakpoints (reference — use in media queries) */
+  /* sm 640px · md 768px · lg 1024px · xl 1280px */
+}
+
+/* Arabic gets the Arabic family and looser leading automatically */
+[lang="ar"], [dir="rtl"] {
+  font-family: var(--sela-font-ar);
+  line-height: var(--sela-leading-ar);
+}
+
+/* Latin drug names inside Arabic text stay LTR and keep their font */
+bdi.drug, .drug-name {
+  font-family: var(--sela-font-la);
+  font-weight: 500;
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+/* Prices, batch numbers, codes */
+.data, .price, .batch {
+  font-family: var(--sela-font-data);
+  font-variant-numeric: tabular-nums;
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
