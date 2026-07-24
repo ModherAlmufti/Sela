@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sela Design System v1.0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --teal-50:#EBF7F5; --teal-100:#D1F0EB; --teal-200:#A8E6DF; --teal-300:#6FD5C9;
+  --teal-400:#2FC4B4; --teal-500:#10B5A6; --teal-600:#0D9488; --teal-700:#0B7A70;
+  --teal-800:#085F58; --teal-900:#06403C;
+
+  --ink-50:#F7F9FA; --ink-100:#EEF2F4; --ink-200:#DFE5E9; --ink-300:#C3CDD4;
+  --ink-400:#8FA0AC; --ink-500:#657687; --ink-600:#48586A; --ink-700:#33455A;
+  --ink-800:#1F2937; --ink-900:#121A24;
+
+  --blue-50:#EFF5FF; --blue-200:#BFD6FE; --blue-500:#3B7DF6; --blue-700:#1D4FB8;
+  --violet-50:#F4F1FE; --violet-200:#D6CCFA; --violet-500:#7C5CE0; --violet-700:#5237A8;
+  --amber-50:#FFF6E8; --amber-200:#FBDFA6; --amber-500:#D98A0B; --amber-700:#96600A;
+  --green-50:#EDF8EF; --green-200:#BCE5C4; --green-500:#2E9E52; --green-700:#1D6C39;
+  --red-50:#FDEEEE; --red-200:#F6C4C4; --red-500:#D63A3A; --red-700:#9B2626;
+
+  --page:#FBFCFC; --surface:#FFFFFF; --hairline:#E6ECEF;
+  --r-sm:8px; --r-md:12px; --r-lg:16px; --r-xl:24px; --r-pill:999px;
+  --ar:'Tajawal',system-ui,sans-serif;
+  --la:'Plus Jakarta Sans',system-ui,sans-serif;
+  --mo:'IBM Plex Mono',monospace;
+  --e1:0 1px 2px rgba(31,41,55,.05);
+  --e2:0 2px 8px rgba(31,41,55,.07);
+  --e3:0 8px 24px rgba(31,41,55,.09);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);color:var(--ink-800);font-family:var(--la);font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:0 28px 100px}
+h1,h2,h3,h4{font-weight:600;letter-spacing:-.01em;margin:0}
+code,.mono{font-family:var(--mo);font-size:12.5px}
+hr{border:0;border-top:1px solid var(--hairline);margin:0}
+
+header{padding:72px 0 40px;border-bottom:1px solid var(--hairline)}
+header h1{font-size:38px;letter-spacing:-.025em}
+header p{color:var(--ink-500);margin:10px 0 0;max-width:620px}
+.tag{display:inline-block;font-family:var(--mo);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-700);background:var(--teal-50);padding:5px 11px;border-radius:var(--r-pill);margin-bottom:18px}
+
+section{padding:56px 0;border-bottom:1px solid var(--hairline)}
+.shead{display:flex;align-items:baseline;gap:14px;margin-bottom:8px}
+.snum{font-family:var(--mo);font-size:12px;color:var(--ink-400)}
+.shead h2{font-size:24px}
+.slede{color:var(--ink-500);max-width:660px;margin:0 0 32px}
+h3.sub{font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-400);font-weight:600;margin:36px 0 14px}
+h3.sub:first-of-type{margin-top:0}
+
+.card{background:var(--surface);border:1px solid var(--hairline);border-radius:var(--r-md);padding:22px}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+
+.ramp{display:flex;border-radius:var(--r-sm);overflow:hidden;border:1px solid var(--hairline)}
+.ramp div{flex:1;height:58px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:5px;font-family:var(--mo);font-size:9.5px}
+.rlabel{display:flex;justify-content:space-between;font-family:var(--mo);font-size:11px;color:var(--ink-400);margin:6px 2px 22px}
+
+.swatch{border-radius:var(--r-md);overflow:hidden;border:1px solid var(--hairline);background:var(--surface)}
+.swatch .chip{height:76px}
+.swatch .meta{padding:11px 13px}
+.swatch .meta b{display:block;font-size:13px;font-weight:600}
+.swatch .meta span{font-family:var(--mo);font-size:11px;color:var(--ink-400)}
+
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{text-align:left;font-weight:600;color:var(--ink-400);font-size:11px;text-transform:uppercase;letter-spacing:.07em;padding:0 12px 9px;border-bottom:1px solid var(--hairline)}
+td{padding:11px 12px;border-bottom:1px solid var(--hairline);vertical-align:top}
+tr:last-child td{border-bottom:0}
+td.m{font-family:var(--mo);font-size:12px;color:var(--ink-600);white-space:nowrap}
+
+.btn{font-family:var(--la);font-weight:600;font-size:14px;border-radius:var(--r-sm);padding:0 18px;height:44px;display:inline-flex;align-items:center;gap:8px;cursor:pointer;border:1px solid transparent;transition:background .15s,border-color .15s}
+.btn-p{background:var(--teal-500);color:#fff}
+.btn-p:hover{background:var(--teal-600)}
+.btn-s{background:var(--surface);color:var(--ink-800);border-color:var(--ink-300)}
+.btn-s:hover{background:var(--ink-50);border-color:var(--ink-400)}
+.btn-g{background:transparent;color:var(--ink-600)}
+.btn-g:hover{background:var(--ink-100)}
+.btn-d{background:var(--red-500);color:#fff}
+.btn:focus-visible{outline:2px solid var(--teal-600);outline-offset:2px}
+
+.inp{width:100%;height:44px;border:1px solid var(--ink-300);border-radius:var(--r-sm);padding:0 14px;font-family:var(--la);font-size:14px;background:var(--surface);color:var(--ink-800)}
+.inp::placeholder{color:var(--ink-400)}
+.inp:focus{outline:none;border-color:var(--teal-500);box-shadow:0 0 0 3px var(--teal-100)}
+
+.pill{display:inline-flex;align-items:center;gap:7px;height:38px;padding:0 15px;border:1px solid var(--hairline);background:var(--surface);border-radius:var(--r-pill);font-size:13.5px;font-weight:500;cursor:pointer;color:var(--ink-700)}
+.pill:hover{border-color:var(--teal-300);background:var(--teal-50)}
+
+.badge{display:inline-block;font-size:11.5px;font-weight:600;padding:3px 9px;border-radius:var(--r-sm)}
+
+.stat{background:var(--surface);border:1px solid var(--hairline);border-radius:var(--r-md);padding:16px 18px}
+.stat .n{font-size:28px;font-weight:700;font-family:var(--la);letter-spacing:-.02em;line-height:1.1}
+.stat .l{font-size:12.5px;color:var(--ink-500);margin-top:3px}
+
+.banner{border-radius:var(--r-md);padding:13px 16px;font-size:13.5px;display:flex;gap:11px;align-items:flex-start;border:1px solid}
+
+.do,.dont{border-radius:var(--r-md);padding:16px 18px;font-size:13.5px;border:1px solid}
+.do{background:var(--green-50);border-color:var(--green-200)}
+.dont{background:var(--red-50);border-color:var(--red-200)}
+.do b,.dont b{display:block;margin-bottom:7px;font-size:12px;text-transform:uppercase;letter-spacing:.07em}
+.do b{color:var(--green-700)} .dont b{color:var(--red-700)}
+.do ul,.dont ul{margin:0;padding-inline-start:18px}
+.do li,.dont li{margin-bottom:5px}
+
+.ar{font-family:var(--ar);direction:rtl;text-align:right}
+.rtlbox{direction:rtl;text-align:right;font-family:var(--ar)}
+
+.spec{display:flex;align-items:center;gap:16px;padding:13px 0;border-bottom:1px solid var(--hairline)}
+.spec:last-child{border-bottom:0}
+.spec .bar{background:var(--teal-200);height:16px;border-radius:3px}
+.spec .nm{font-family:var(--mo);font-size:11.5px;color:var(--ink-500);width:110px;flex-shrink:0}
+
+.logobox{background:var(--surface);border:1px solid var(--hairline);border-radius:var(--r-md);padding:34px;display:flex;align-items:center;justify-content:center;min-height:150px}
+.logobox.dark{background:var(--ink-800);border-color:var(--ink-700)}
+.logobox.teal{background:var(--teal-500);border-color:var(--teal-500)}
+
+.note{background:var(--amber-50);border:1px solid var(--amber-200);border-radius:var(--r-md);padding:15px 18px;font-size:13.5px;color:var(--amber-700)}
+.note b{color:var(--amber-700)}
+
+@media(max-width:640px){
+  .wrap{padding:0 18px 70px}
+  header h1{font-size:29px}
+  .ramp div{font-size:8px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <span class="tag">Design system · v1.0 · July 2026</span>
+  <h1>Sela</h1>
+  <p>The visual system for Sela — the connective layer for pharmacy in Iraq. Arabic-first, RTL-native, built to stay coherent as the product grows from a community feed into an operating system.</p>
+</header>
+
+<!-- 01 LOGO -->
+<section>
+  <div class="shead"><span class="snum">01</span><h2>Logo</h2></div>
+  <p class="slede">Two interlocking links form the letter S and the idea of صلة — a connection. A pulse line runs through the joint. The mark carries the meaning; nothing else in the system needs to.</p>
+
+  <h3 class="sub">Primary lockup</h3>
+  <div class="grid g3">
+    <div class="logobox">
+      <svg width="150" height="72" viewBox="0 0 210 100" fill="none" aria-label="Sela logo">
+        <g transform="translate(4,10) scale(0.8)">
+          <path d="M62 24C42 12 20 24 20 44c0 15 13 22 27 22" stroke="#10B5A6" stroke-width="15" stroke-linecap="round"/>
+          <path d="M38 76c20 12 42 0 42-20 0-15-13-22-27-22" stroke="#10B5A6" stroke-width="15" stroke-linecap="round"/>
+          <path d="M50 16v24l-8 9 16 8-8 9v24" stroke="#FFFFFF" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M50 16v24l-8 9 16 8-8 9v24" stroke="#1F2937" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <text x="98" y="42" font-family="Tajawal,sans-serif" font-size="30" font-weight="700" fill="#1F2937">صلة</text>
+        <text x="98" y="80" font-family="Plus Jakarta Sans,sans-serif" font-size="31" font-weight="700" fill="#10B5A6" letter-spacing="-0.5">Sela</text>
+      </svg>
+    </div>
+    <div class="logobox dark">
+      <svg width="150" height="72" viewBox="0 0 210 100" fill="none" aria-label="Sela logo on dark">
+        <g transform="translate(4,10) scale(0.8)">
+          <path d="M62 24C42 12 20 24 20 44c0 15 13 22 27 22" stroke="#2FC4B4" stroke-width="15" stroke-linecap="round"/>
+          <path d="M38 76c20 12 42 0 42-20 0-15-13-22-27-22" stroke="#2FC4B4" stroke-width="15" stroke-linecap="round"/>
+          <path d="M50 16v24l-8 9 16 8-8 9v24" stroke="#1F2937" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M50 16v24l-8 9 16 8-8 9v24" stroke="#FFFFFF" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <text x="98" y="42" font-family="Tajawal,sans-serif" font-size="30" font-weight="700" fill="#FFFFFF">صلة</text>
+        <text x="98" y="80" font-family="Plus Jakarta Sans,sans-serif" font-size="31" font-weight="700" fill="#2FC4B4" letter-spacing="-0.5">Sela</text>
+      </svg>
+    </div>
+    <div class="logobox teal">
+      <svg width="150" height="72" viewBox="0 0 210 100" fill="none" aria-label="Sela logo reversed">
+        <g transform="translate(4,10) scale(0.8)">
+          <path d="M62 24C42 12 20 24 20 44c0 15 13 22 27 22" stroke="#FFFFFF" stroke-width="15" stroke-linecap="round"/>
+          <path d="M38 76c20 12 42 0 42-20 0-15-13-22-27-22" stroke="#FFFFFF" stroke-width="15" stroke-linecap="round"/>
+          <path d="M50 16v24l-8 9 16 8-8 9v24" stroke="#10B5A6" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M50 16v24l-8 9 16 8-8 9v24" stroke="#FFFFFF" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <text x="98" y="42" font-family="Tajawal,sans-serif" font-size="30" font-weight="700" fill="#FFFFFF">صلة</text>
+        <text x="98" y="80" font-family="Plus Jakarta Sans,sans-serif" font-size="31" font-weight="700" fill="#FFFFFF" letter-spacing="-0.5">Sela</text>
+      </svg>
+    </div>
+  </div>
+
+  <h3 class="sub">Mark only — app icon, avatar, favicon</h3>
+  <div class="grid g4">
+    <div class="logobox" style="min-height:120px">
+      <svg width="66" height="66" viewBox="0 0 100 100" aria-label="Sela mark">
+        <path d="M62 24C42 12 20 24 20 44c0 15 13 22 27 22" stroke="#10B5A6" stroke-width="15" stroke-linecap="round" fill="none"/>
+        <path d="M38 76c20 12 42 0 42-20 0-15-13-22-27-22" stroke="#10B5A6" stroke-width="15" stroke-linecap="round" fill="none"/>
+        <path d="M50 16v24l-8 9 16 8-8 9v24" stroke="#FFFFFF" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M50 16v24l-8 9 16 8-8 9v24" stroke="#1F2937" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </div>
+    <div class="logobox" style="min-height:120px;background:var(--teal-50)">
+      <svg width="44" height="44" viewBox="0 0 100 100" aria-label="Sela mark small">
+        <path d="M62 24C42 12 20 24 20 44c0 15 13 22 27 22" stroke="#10B5A6" stroke-width="16" stroke-linecap="round" fill="none"/>
+        <path d="M38 76c20 12 42 0 42-20 0-15-13-22-27-22" stroke="#10B5A6" stroke-width="16" stroke-linecap="round" fill="none"/>
+      </svg>
+    </div>
+    <div class="logobox" style="min-height:120px">
+      <svg width="26" height="26" viewBox="0 0 100 100" aria-label="Sela favicon">
+        <path d="M62 24C42 12 20 24 20 44c0 15 13 22 27 22" stroke="#10B5A6" stroke-width="18" stroke-linecap="round" fill="none"/>
+        <path d="M38 76c20 12 42 0 42-20 0-15-13-22-27-22" stroke="#10B5A6" stroke-width="18" stroke-linecap="round" fill="none"/>
+      </svg>
+    </div>
+    <div class="card" style="font-size:13px;color:var(--ink-500)">
+      <b style="color:var(--ink-800);display:block;margin-bottom:6px">Below 32px</b>
+      Drop the pulse line. It fills in and turns the mark into a smudge. Links only.
+    </div>
+  </div>
+
+  <h3 class="sub">Rules</h3>
+  <div class="grid g2">
+    <div class="do">
+      <b>Do</b>
+      <ul>
+        <li>Clear space on all sides equal to the height of the mark.</li>
+        <li>Minimum lockup width 96px, minimum mark 20px.</li>
+        <li>Arabic صلة always sits above Latin Sela, never beside it.</li>
+        <li>On photography, use the solid teal or dark version only.</li>
+      </ul>
+    </div>
+    <div class="dont">
+      <b>Don't</b>
+      <ul>
+        <li>Don't recolor the mark outside teal-500, white, or ink-800.</li>
+        <li>Don't add a shadow, glow, outline, or gradient to the mark.</li>
+        <li>Don't stretch, rotate, or reweight the strokes.</li>
+        <li>Don't set Sela in any face other than Plus Jakarta Sans 700.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="note" style="margin-top:16px"><b>Note:</b> this is a code-ready rebuild of the mark for use in HTML and SVG. Keep the original vector file as the master for print and large-format work.</div>
+</section>
+
+<!-- 02 COLOR -->
+<section>
+  <div class="shead"><span class="snum">02</span><h2>Color</h2></div>
+  <p class="slede">One brand color, one ink, five domain colors. Domain colors are not decoration — each one maps to a permanent part of the product, so a pharmacist learns the interface by color before reading it.</p>
+
+  <h3 class="sub">Teal — brand</h3>
+  <div class="ramp">
+    <div style="background:var(--teal-50)"></div><div style="background:var(--teal-100)"></div>
+    <div style="background:var(--teal-200)"></div><div style="background:var(--teal-300)"></div>
+    <div style="background:var(--teal-400)"></div><div style="background:var(--teal-500);color:#fff">500</div>
+    <div style="background:var(--teal-600);color:#fff"></div><div style="background:var(--teal-700);color:#fff"></div>
+    <div style="background:var(--teal-800);color:#fff"></div><div style="background:var(--teal-900);color:#fff"></div>
+  </div>
+  <div class="rlabel"><span>50 · #EBF7F5</span><span>500 · #10B5A6 — primary</span><span>900 · #06403C</span></div>
+
+  <h3 class="sub">Ink — text, surfaces, structure</h3>
+  <div class="ramp">
+    <div style="background:var(--ink-50)"></div><div style="background:var(--ink-100)"></div>
+    <div style="background:var(--ink-200)"></div><div style="background:var(--ink-300)"></div>
+    <div style="background:var(--ink-400)"></div><div style="background:var(--ink-500);color:#fff"></div>
+    <div style="background:var(--ink-600);color:#fff"></div><div style="background:var(--ink-700);color:#fff"></div>
+    <div style="background:var(--ink-800);color:#fff">800</div><div style="background:var(--ink-900);color:#fff"></div>
+  </div>
+  <div class="rlabel"><span>50 · #F7F9FA</span><span>800 · #1F2937 — body text</span><span>900 · #121A24</span></div>
+
+  <h3 class="sub">Domain colors</h3>
+  <div class="grid g3">
+    <div class="swatch"><div class="chip" style="background:var(--teal-500)"></div><div class="meta"><b>Teal · Medicines &amp; supply</b><span>#10B5A6</span></div></div>
+    <div class="swatch"><div class="chip" style="background:var(--blue-500)"></div><div class="meta"><b>Blue · Jobs &amp; career</b><span>#3B7DF6</span></div></div>
+    <div class="swatch"><div class="chip" style="background:var(--violet-500)"></div><div class="meta"><b>Violet · People &amp; hiring</b><span>#7C5CE0</span></div></div>
+    <div class="swatch"><div class="chip" style="background:var(--amber-500)"></div><div class="meta"><b>Amber · Market &amp; offers</b><span>#D98A0B</span></div></div>
+    <div class="swatch"><div class="chip" style="background:var(--red-500)"></div><div class="meta"><b>Red · Recalls &amp; alerts</b><span>#D63A3A</span></div></div>
+    <div class="swatch"><div class="chip" style="background:var(--green-500)"></div><div class="meta"><b>Green · In stock, verified</b><span>#2E9E52</span></div></div>
+  </div>
+
+  <h3 class="sub">Usage</h3>
+  <table>
+    <tr><th style="width:190px">Rule</th><th>Detail</th></tr>
+    <tr><td><b>One accent per screen</b></td><td>Teal is the only color allowed on primary actions. A domain color appears only on content belonging to that domain — a recall card, a job badge. Never as a button.</td></tr>
+    <tr><td><b>Tint, don't fill</b></td><td>Domain colors appear as the 50 tint background with the 700 text on top. The 500 is for icons, dots, and 2px accents only.</td></tr>
+    <tr><td><b>No gradients</b></td><td>Every surface is a flat fill. No mesh, no glow halo, no soft radial wash behind headings. This is the single biggest change from the current mockups.</td></tr>
+    <tr><td><b>Contrast floor</b></td><td>Body text ink-800 on white is 13.9:1. Never place teal-500 text on white for body copy — it fails at 2.6:1. Use teal-700 for links.</td></tr>
+  </table>
+</section>
+
+<!-- 03 TYPE -->
+<section>
+  <div class="shead"><span class="snum">03</span><h2>Typography</h2></div>
+  <p class="slede">Two families, not three. Tajawal carries Arabic, Plus Jakarta Sans carries Latin, IBM Plex Mono carries data. Cairo is retired — running two Arabic faces makes the system drift within a month.</p>
+
+  <div class="grid g2">
+    <div class="card">
+      <div class="ar" style="font-size:34px;font-weight:700;line-height:1.35">نربط الصيادلة</div>
+      <div class="ar" style="font-size:16px;color:var(--ink-500);margin-top:6px">أبجد هوز حطي كلمن ١٢٣٤٥٦٧٨٩٠</div>
+      <hr style="margin:16px 0">
+      <div style="font-family:var(--mo);font-size:11.5px;color:var(--ink-400)">Tajawal · 400 / 500 / 700 · Arabic UI and headlines</div>
+    </div>
+    <div class="card">
+      <div style="font-size:34px;font-weight:700;letter-spacing:-.025em;line-height:1.25">Connect pharmacists</div>
+      <div style="font-size:16px;color:var(--ink-500);margin-top:6px">Amoxicillin 500 mg · 1234567890</div>
+      <hr style="margin:16px 0">
+      <div style="font-family:var(--mo);font-size:11.5px;color:var(--ink-400)">Plus Jakarta Sans · 400 / 500 / 600 / 700 · Latin, drug names, numerals</div>
+    </div>
+  </div>
+
+  <h3 class="sub">Scale</h3>
+  <table>
+    <tr><th>Token</th><th>Size / line</th><th>Weight</th><th>Use</th></tr>
+    <tr><td class="m">display</td><td class="m">40 / 1.2</td><td class="m">700</td><td>Marketing hero only</td></tr>
+    <tr><td class="m">h1</td><td class="m">30 / 1.3</td><td class="m">700</td><td>Page title</td></tr>
+    <tr><td class="m">h2</td><td class="m">22 / 1.35</td><td class="m">600</td><td>Section heading</td></tr>
+    <tr><td class="m">h3</td><td class="m">17 / 1.4</td><td class="m">600</td><td>Card title</td></tr>
+    <tr><td class="m">body</td><td class="m">15 / 1.65</td><td class="m">400</td><td>Default</td></tr>
+    <tr><td class="m">small</td><td class="m">13 / 1.55</td><td class="m">400</td><td>Secondary, metadata</td></tr>
+    <tr><td class="m">caption</td><td class="m">11.5 / 1.45</td><td class="m">500</td><td>Labels, badges, eyebrows</td></tr>
+    <tr><td class="m">data</td><td class="m">13 / 1.4</td><td class="m">500</td><td>IBM Plex Mono — prices, batch numbers, codes</td></tr>
+  </table>
+
+  <h3 class="sub">Language rules</h3>
+  <table>
+    <tr><td style="width:190px"><b>Drug names</b></td><td>Always Latin script, never transliterated. <code>Pantoprazole</code>, not <code>بانتوبرازول</code>. Pharmacists read them in Latin and search them in Latin.</td></tr>
+    <tr><td><b>Numerals</b></td><td>Western digits (0–9) everywhere, including inside Arabic text. Prices, doses, counts and dates stay scannable and sortable.</td></tr>
+    <tr><td><b>Arabic register</b></td><td>Modern Standard for anything official or clinical. Iraqi dialect is allowed in community copy and marketing, never in a warning or a dosage note.</td></tr>
+    <tr><td><b>Sentence case</b></td><td>English UI is sentence case. Never Title Case, never ALL CAPS except the mono eyebrow labels.</td></tr>
+    <tr><td><b>Line length</b></td><td>Arabic reads slower at width — cap body text at 60 characters, not 75.</td></tr>
+  </table>
+</section>
+
+<!-- 04 LAYOUT -->
+<section>
+  <div class="shead"><span class="snum">04</span><h2>Space, radius, elevation</h2></div>
+  <p class="slede">A 4px base with an 8px working rhythm. Radius encodes size: the bigger the surface, the softer the corner.</p>
+
+  <h3 class="sub">Spacing</h3>
+  <div class="card">
+    <div class="spec"><span class="nm">space-1 · 4px</span><div class="bar" style="width:4px"></div></div>
+    <div class="spec"><span class="nm">space-2 · 8px</span><div class="bar" style="width:8px"></div></div>
+    <div class="spec"><span class="nm">space-3 · 12px</span><div class="bar" style="width:12px"></div></div>
+    <div class="spec"><span class="nm">space-4 · 16px</span><div class="bar" style="width:16px"></div></div>
+    <div class="spec"><span class="nm">space-6 · 24px</span><div class="bar" style="width:24px"></div></div>
+    <div class="spec"><span class="nm">space-8 · 32px</span><div class="bar" style="width:32px"></div></div>
+    <div class="spec"><span class="nm">space-12 · 48px</span><div class="bar" style="width:48px"></div></div>
+    <div class="spec"><span class="nm">space-16 · 64px</span><div class="bar" style="width:64px"></div></div>
+  </div>
+
+  <h3 class="sub">Radius &amp; elevation</h3>
+  <div class="grid g4">
+    <div class="card" style="text-align:center"><div style="height:52px;background:var(--teal-100);border-radius:8px;margin-bottom:10px"></div><b style="font-size:13px">8px</b><div style="font-size:11.5px;color:var(--ink-400)">buttons, inputs, badges</div></div>
+    <div class="card" style="text-align:center"><div style="height:52px;background:var(--teal-100);border-radius:12px;margin-bottom:10px"></div><b style="font-size:13px">12px</b><div style="font-size:11.5px;color:var(--ink-400)">cards, banners</div></div>
+    <div class="card" style="text-align:center"><div style="height:52px;background:var(--teal-100);border-radius:16px;margin-bottom:10px"></div><b style="font-size:13px">16px</b><div style="font-size:11.5px;color:var(--ink-400)">panels, modals</div></div>
+    <div class="card" style="text-align:center"><div style="height:52px;background:var(--teal-100);border-radius:999px;margin-bottom:10px"></div><b style="font-size:13px">pill</b><div style="font-size:11.5px;color:var(--ink-400)">chips, avatars, tags</div></div>
+  </div>
+  <div class="grid g3" style="margin-top:14px">
+    <div class="card" style="box-shadow:var(--e1)"><b style="font-size:13px">e1</b><div style="font-size:11.5px;color:var(--ink-400);font-family:var(--mo)">0 1px 2px / 5% — resting card</div></div>
+    <div class="card" style="box-shadow:var(--e2)"><b style="font-size:13px">e2</b><div style="font-size:11.5px;color:var(--ink-400);font-family:var(--mo)">0 2px 8px / 7% — hover, dropdown</div></div>
+    <div class="card" style="box-shadow:var(--e3)"><b style="font-size:13px">e3</b><div style="font-size:11.5px;color:var(--ink-400);font-family:var(--mo)">0 8px 24px / 9% — modal</div></div>
+  </div>
+
+  <h3 class="sub">Grid</h3>
+  <table>
+    <tr><td style="width:190px"><b>Container</b></td><td class="m">1200px max · 24px gutter desktop · 16px mobile</td></tr>
+    <tr><td><b>Columns</b></td><td class="m">12 desktop · 8 tablet · 4 mobile</td></tr>
+    <tr><td><b>Sidebar</b></td><td class="m">248px expanded · 68px collapsed</td></tr>
+    <tr><td><b>Breakpoints</b></td><td class="m">sm 640 · md 768 · lg 1024 · xl 1280</td></tr>
+  </table>
+</section>
+
+<!-- 05 COMPONENTS -->
+<section>
+  <div class="shead"><span class="snum">05</span><h2>Components</h2></div>
+  <p class="slede">Every control is 44px tall. That is the thumb target, and most of your users are standing behind a counter holding a phone in one hand.</p>
+
+  <h3 class="sub">Buttons</h3>
+  <div class="card" style="display:flex;gap:11px;flex-wrap:wrap;align-items:center">
+    <button class="btn btn-p">Find medicine</button>
+    <button class="btn btn-s">Save</button>
+    <button class="btn btn-g">Cancel</button>
+    <button class="btn btn-d">Report recall</button>
+    <button class="btn btn-p" disabled style="opacity:.4;cursor:not-allowed">Disabled</button>
+  </div>
+  <table style="margin-top:14px">
+    <tr><td style="width:190px"><b>Primary</b></td><td>teal-500 fill, white text. <b>One per screen.</b> If two things look equally important, neither is.</td></tr>
+    <tr><td><b>Secondary</b></td><td>White fill, ink-300 border. The default choice for almost everything.</td></tr>
+    <tr><td><b>Ghost</b></td><td>No fill. Cancel, dismiss, tertiary navigation.</td></tr>
+    <tr><td><b>Danger</b></td><td>red-500. Destructive or safety-critical only.</td></tr>
+  </table>
+
+  <h3 class="sub">Input &amp; search</h3>
+  <div class="card">
+    <input class="inp" placeholder="Search any medicine, supplier, or job">
+    <div style="height:11px"></div>
+    <input class="inp rtlbox" placeholder="ابحث عن دواء أو شركة أو وظيفة">
+  </div>
+
+  <h3 class="sub">Suggestion chips</h3>
+  <div class="card" style="display:flex;gap:9px;flex-wrap:wrap">
+    <span class="pill">Find Ozempic</span>
+    <span class="pill">Today's offers</span>
+    <span class="pill">Market insights</span>
+    <span class="pill">Drug recalls</span>
+    <span class="pill rtlbox">تبادل النواقص</span>
+  </div>
+
+  <h3 class="sub">Metric cards</h3>
+  <div class="grid g4">
+    <div class="stat"><div class="n">12,845</div><div class="l">Pharmacists</div></div>
+    <div class="stat"><div class="n">4,320</div><div class="l">Pharmacies</div></div>
+    <div class="stat"><div class="n" style="color:var(--teal-600)">1,280</div><div class="l">Companies</div></div>
+    <div class="stat"><div class="n">324</div><div class="l">Active offers</div></div>
+  </div>
+  <div class="note" style="margin-top:12px"><b>Rule:</b> a metric card shows a number and a label. No sparkline, no percentage arrow, no colored delta unless the change is genuinely actionable. Growth percentages next to every stat is investor-deck styling, not product design.</div>
+
+  <h3 class="sub">Badges</h3>
+  <div class="card" style="display:flex;gap:9px;flex-wrap:wrap">
+    <span class="badge" style="background:var(--green-50);color:var(--green-700)">In stock</span>
+    <span class="badge" style="background:var(--red-50);color:var(--red-700)">Recalled</span>
+    <span class="badge" style="background:var(--amber-50);color:var(--amber-700)">Near expiry</span>
+    <span class="badge" style="background:var(--blue-50);color:var(--blue-700)">Hiring</span>
+    <span class="badge" style="background:var(--violet-50);color:var(--violet-700)">Verified pharmacist</span>
+    <span class="badge" style="background:var(--teal-50);color:var(--teal-700)">Registered · MoH</span>
+  </div>
+
+  <h3 class="sub">Banners</h3>
+  <div class="grid" style="gap:11px">
+    <div class="banner" style="background:var(--red-50);border-color:var(--red-200);color:var(--red-700)"><b>Recall</b><span>Batch 4471B of Amoxicillin 500 mg has been withdrawn. Check your shelves and remove affected stock.</span></div>
+    <div class="banner" style="background:var(--amber-50);border-color:var(--amber-200);color:var(--amber-700)"><b>Expiring</b><span>3 items in your inventory expire within 30 days. List them on Exchange to recover value.</span></div>
+    <div class="banner" style="background:var(--teal-50);border-color:var(--teal-200);color:var(--teal-800)"><b>New</b><span>Sela Exchange is now open in Basra and Najaf.</span></div>
+  </div>
+
+  <h3 class="sub">Icons</h3>
+  <table>
+    <tr><td style="width:190px"><b>Style</b></td><td>Outline only. 1.5px stroke, round cap, round join, 24px grid. No filled icons anywhere in the product.</td></tr>
+    <tr><td><b>Color</b></td><td>Inherits text color by default. A domain color only when the icon labels that domain.</td></tr>
+    <tr><td><b>Sizes</b></td><td class="m">16 inline · 20 buttons · 24 navigation · 32 feature cards</td></tr>
+    <tr><td><b>Emoji</b></td><td>Never in the product interface. The 👋 and ☀️ in the current mockups get replaced with icons or removed. Emoji is fine in social content, never in the UI.</td></tr>
+  </table>
+</section>
+
+<!-- 06 RTL -->
+<section>
+  <div class="shead"><span class="snum">06</span><h2>RTL</h2></div>
+  <p class="slede">Arabic is the primary language of this product, not a translation of it. Build RTL-first and let LTR be the mirror, not the other way around.</p>
+  <table>
+    <tr><td style="width:190px"><b>Logical properties</b></td><td>Use <code>margin-inline-start</code>, <code>padding-inline-end</code>, <code>inset-inline</code>. Never <code>margin-left</code>. One <code>dir</code> attribute then flips the whole product correctly.</td></tr>
+    <tr><td><b>What mirrors</b></td><td>Layout, navigation, sidebars, progress bars, chevrons, back arrows, alignment.</td></tr>
+    <tr><td><b>What never mirrors</b></td><td>The Sela mark. Drug names. Numbers. Phone numbers. Clocks. Charts with a time axis. Play buttons.</td></tr>
+    <tr><td><b>Mixed strings</b></td><td>Wrap Latin drug names inside Arabic sentences in <code>&lt;bdi&gt;</code>. Without it, punctuation jumps to the wrong end and the sentence looks broken.</td></tr>
+    <tr><td><b>Line height</b></td><td>Arabic needs more. Use 1.75 for Arabic body against 1.65 for Latin.</td></tr>
+  </table>
+  <div class="card rtlbox" style="margin-top:16px">
+    <div style="font-size:20px;font-weight:700;margin-bottom:6px">تنبيه سحب دفعة</div>
+    <div style="line-height:1.75;color:var(--ink-600)">تم سحب الدفعة رقم <bdi>4471B</bdi> من دواء <bdi>Amoxicillin 500 mg</bdi> من السوق. يرجى فحص المخزون وإزالة الكميات المتأثرة.</div>
+  </div>
+</section>
+
+<!-- 07 MOTION -->
+<section>
+  <div class="shead"><span class="snum">07</span><h2>Motion &amp; voice</h2></div>
+  <table>
+    <tr><td style="width:190px"><b>Durations</b></td><td class="m">120ms hover · 180ms panel · 240ms modal · 320ms page</td></tr>
+    <tr><td><b>Easing</b></td><td class="m">cubic-bezier(.2,0,0,1) — everything</td></tr>
+    <tr><td><b>Never animate</b></td><td>Prices, doses, stock counts, or anything a pharmacist reads to make a decision. It reads as unstable data.</td></tr>
+    <tr><td><b>Reduced motion</b></td><td>Respect <code>prefers-reduced-motion</code>. Opacity only, no transform.</td></tr>
+  </table>
+  <div class="grid g2" style="margin-top:20px">
+    <div class="do">
+      <b>Voice — do</b>
+      <ul>
+        <li>Say what happens: "Find medicine", not "Get started".</li>
+        <li>Errors state the problem and the fix, in one line.</li>
+        <li>Empty states invite an action, not apologize.</li>
+        <li>Same word for the same action everywhere.</li>
+      </ul>
+    </div>
+    <div class="dont">
+      <b>Voice — don't</b>
+      <ul>
+        <li>No "seamless", "empower", "revolutionize", "unlock".</li>
+        <li>No exclamation marks in system messages.</li>
+        <li>No first person. The product isn't a friend saying "I".</li>
+        <li>No clinical advice phrased as a recommendation.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 08 CHANGES -->
+<section style="border-bottom:0">
+  <div class="shead"><span class="snum">08</span><h2>What changed from the mockups</h2></div>
+  <p class="slede">Seven decisions that turn the current designs into a system. The logo, the teal, and the product naming are unchanged.</p>
+  <table>
+    <tr><th style="width:44px">#</th><th>Change</th><th>Why</th></tr>
+    <tr><td class="m">1</td><td>All gradients and glow halos removed</td><td>They date the product to 2021 healthtech and cost render performance on the low-end Android devices most of your users hold.</td></tr>
+    <tr><td class="m">2</td><td>Emoji removed from the interface</td><td>👋 and 🔥 in a product handling drug recalls undercuts the trust the brand is selling.</td></tr>
+    <tr><td class="m">3</td><td>Cairo retired, Tajawal only</td><td>Two Arabic families with no assigned roles guarantees inconsistency within weeks.</td></tr>
+    <tr><td class="m">4</td><td>Domain colors given fixed meaning</td><td>Six colors used decoratively is noise. Six colors used semantically is a navigation aid.</td></tr>
+    <tr><td class="m">5</td><td>One primary button per screen</td><td>The current dashboard has four teal calls to action competing. None of them wins.</td></tr>
+    <tr><td class="m">6</td><td>Growth percentages pulled off metric cards</td><td>"+12.5% from last month" on a live product with no users is a credibility risk in a demo.</td></tr>
+    <tr><td class="m">7</td><td>Arabic set as the build default</td><td>The mockups are English-first with Arabic screens attached. Your market is the reverse.</td></tr>
+  </table>
+</section>
+
+</div>
+</body>
+</html>
