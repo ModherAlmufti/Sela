@@ -1,47 +1,39 @@
-# Sela — صلة
+# Sela · صلة
 
-**Your AI Workspace for Pharmacy.**
+The connective layer for pharmacy in Iraq.
 
-Sela is an AI assistant for pharmacists: ask about medicines, suppliers, offers,
-jobs, conferences, and anything else in pharmacy.
+**Status:** pre-launch. Everything in this repository is a prototype. No live data, no users, no product.
 
-This repository contains the Sela welcome page — a fully static, dependency-free
-front end built from the product design mockup.
+## Contents
 
-## Features
+| Path | What it is | Live at |
+|---|---|---|
+| `index.html` | Interface prototype | `/Sela/` |
+| `design/index.html` | Design system v1.0 | `/Sela/design/` |
+| `design/tokens.css` | Design tokens, drop-in CSS | `/Sela/design/tokens.css` |
 
-- **Prompt composer** — large ask-anything input with send button, plus
-  Voice, Scan Barcode, and Upload PDF actions (UI placeholders for now)
-- **Suggestion chips** — one-tap example prompts (Find Ozempic, Today's offers,
-  Find Hikma, Market insights, Conferences this week, Drug recalls)
-- **Frequent actions** — Find Medicine, Expiry Exchange, Hire a Pharmacist,
-  and Find a Job cards
-- **Time-aware greeting** — good morning / afternoon / evening based on the
-  visitor's local time
-- Bilingual brand mark (صلة / Sela) drawn as inline SVG, responsive layout
-  down to mobile
+## Design system
 
-## Running locally
+Open `design/index.html` in a browser. It covers logo, color, typography, spacing, components, RTL rules, motion and voice.
 
-No build step — it's plain HTML/CSS/JS. Serve the folder with any static server:
+To use the tokens in any new page:
 
-```bash
-python3 -m http.server 8000
-# then open http://localhost:8000
+```html
+<link rel="stylesheet" href="/Sela/design/tokens.css">
 ```
 
-## Project structure
+## Build rules
 
-```
-index.html    Page markup
-styles.css    All styling (design tokens in :root)
-script.js     Greeting, chip → composer wiring, submit handling
-assets/       Logo and favicon SVGs
-```
+- **RTL first.** Arabic is the primary language. Use `margin-inline-start`, never `margin-left`.
+- **Drug names in Latin script**, always. Wrap them in `<bdi>` inside Arabic text.
+- **Western numerals** everywhere, including inside Arabic.
+- **One primary button per screen.**
+- **No gradients, no glow, no emoji in the interface.**
 
-## Next steps
+## Fonts
 
-- Wire the composer to the Sela backend/AI API
-- Implement voice input, barcode scanning, and PDF upload
-- Replace the hard-coded user name with real authentication
-- Arabic (RTL) localization of the full page
+Tajawal (Arabic) and Plus Jakarta Sans (Latin) from Google Fonts. IBM Plex Mono for prices, batch numbers and codes. All open license.
+
+## Note on prototype content
+
+Numbers, logos and product images inside the prototypes are placeholders. They are not real figures and must not be presented as such.
