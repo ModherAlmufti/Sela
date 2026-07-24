@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <title>Sela</title>
+  <rect width="100" height="100" rx="22" fill="#FFFFFF"/>
+  <path d="M62 24C42 12 20 24 20 44c0 15 13 22 27 22"
+        fill="none" stroke="#10B5A6" stroke-width="17" stroke-linecap="round"/>
+  <path d="M38 76c20 12 42 0 42-20 0-15-13-22-27-22"
+        fill="none" stroke="#10B5A6" stroke-width="17" stroke-linecap="round"/>
+</svg>
