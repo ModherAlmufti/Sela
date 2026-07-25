@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>صلة · وظائف الصيادلة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&family=Plus+Jakarta+Sans:wght@500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --teal-50:#EBF7F5;--teal-100:#D1F0EB;--teal-500:#10B5A6;--teal-600:#0D9488;--teal-700:#0B7A70;
+  --ink-50:#F7F9FA;--ink-100:#EEF2F4;--ink-200:#DFE5E9;--ink-300:#C3CDD4;--ink-400:#8FA0AC;--ink-500:#657687;--ink-800:#1F2937;
+  --blue-50:#EFF5FF;--blue-500:#3B7DF6;--blue-700:#1D4FB8;
+  --violet-50:#F4F1FE;--violet-500:#7C5CE0;--violet-700:#5237A8;
+  --amber-50:#FFF6E8;--amber-500:#D98A0B;--amber-700:#96600A;
+  --green-50:#EDF8EF;--green-500:#2E9E52;--green-700:#1D6C39;
+  --page:#FBFCFC;--surface:#FFFFFF;--hairline:#E6ECEF;
+  --ar:'Tajawal',system-ui,sans-serif;--la:'Plus Jakarta Sans',system-ui,sans-serif;--mo:'IBM Plex Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{background:var(--page);color:var(--ink-800);font-family:var(--ar);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+.app{max-width:640px;margin:0 auto;min-height:100vh}
+.en{font-family:var(--la);direction:ltr;unicode-bidi:isolate;font-weight:600}
+.num{font-family:var(--mo);direction:ltr;unicode-bidi:isolate;font-variant-numeric:tabular-nums}
+
+header{padding:16px 18px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:rgba(251,252,252,.92);backdrop-filter:blur(8px);z-index:10;border-bottom:1px solid var(--hairline)}
+.brand{display:flex;align-items:center;gap:8px}
+.brand b{font-size:17px;font-weight:500}
+.back{color:var(--ink-500);font-size:13px;display:flex;align-items:center;gap:5px;text-decoration:none}
+
+.intro{padding:20px 18px 6px}
+.intro h1{font-size:22px;font-weight:700;margin-bottom:4px}
+.intro p{font-size:13.5px;color:var(--ink-500)}
+
+.searchrow{padding:14px 18px 0}
+.searchbar{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--ink-300);border-radius:12px;height:48px;padding:0 14px}
+.searchbar:focus-within{border-color:var(--teal-500);box-shadow:0 0 0 3px var(--teal-100)}
+.searchbar input{border:0;outline:0;background:transparent;flex:1;font-family:var(--ar);font-size:15px;color:var(--ink-800)}
+.searchbar input::placeholder{color:var(--ink-400)}
+
+.filters{padding:12px 18px;display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.filters::-webkit-scrollbar{display:none}
+.fbtn{flex-shrink:0;display:inline-flex;align-items:center;gap:6px;height:38px;padding:0 14px;border:1px solid var(--hairline);background:var(--surface);border-radius:999px;font-family:var(--ar);font-size:13.5px;font-weight:500;color:var(--ink-600);cursor:pointer;white-space:nowrap}
+.fbtn.active{border-color:var(--teal-500);background:var(--teal-50);color:var(--teal-700)}
+.fbtn .chev{width:14px;height:14px;opacity:.6}
+
+.count{padding:4px 20px 0;font-size:12.5px;color:var(--ink-400)}
+
+.list{padding:12px 18px 40px;display:flex;flex-direction:column;gap:12px}
+
+.job{background:var(--surface);border:1px solid var(--hairline);border-radius:16px;padding:16px 18px;box-shadow:0 1px 2px rgba(31,41,55,.05);cursor:pointer;transition:border-color .12s,box-shadow .12s}
+.job:hover{border-color:var(--teal-300);box-shadow:0 4px 14px rgba(31,41,55,.07)}
+.job__top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.job__title{font-size:16px;font-weight:700;line-height:1.4}
+.job__employer{font-size:13px;color:var(--ink-500);margin-top:2px}
+.verified{flex-shrink:0;display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:700;color:var(--teal-700);background:var(--teal-50);border-radius:999px;padding:3px 9px}
+.unverified{flex-shrink:0;font-size:11px;font-weight:500;color:var(--amber-700);background:var(--amber-50);border-radius:999px;padding:3px 9px}
+
+.tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+.tag{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:500;color:var(--ink-600);background:var(--ink-50);border-radius:8px;padding:4px 9px}
+.tag svg{width:13px;height:13px;opacity:.6}
+.tag--type{color:var(--violet-700);background:var(--violet-50)}
+.tag--salary{color:var(--green-700);background:var(--green-50)}
+
+.job__foot{display:flex;align-items:center;justify-content:space-between;margin-top:12px;padding-top:12px;border-top:1px solid var(--ink-100)}
+.job__posted{font-size:11.5px;color:var(--ink-400)}
+.job__more{font-size:12.5px;color:var(--teal-700);font-weight:500}
+
+.state{text-align:center;padding:60px 24px;color:var(--ink-400)}
+.state h3{font-size:16px;font-weight:500;color:var(--ink-500);margin-bottom:6px}
+.state p{font-size:13px;max-width:280px;margin:0 auto}
+
+.sheet-bg{position:fixed;inset:0;background:rgba(18,26,36,.5);display:none;z-index:40}
+.sheet-bg.show{display:block}
+.sheet{position:fixed;inset-inline:0;bottom:0;background:var(--surface);border-radius:20px 20px 0 0;padding:8px 20px 28px;z-index:41;transform:translateY(100%);transition:transform .24s cubic-bezier(.2,0,0,1);max-height:88vh;overflow-y:auto;max-width:640px;margin:0 auto}
+.sheet.show{transform:translateY(0)}
+.sheet__grip{width:38px;height:4px;background:var(--ink-200);border-radius:999px;margin:8px auto 16px}
+.sheet h2{font-size:20px;font-weight:700;line-height:1.4}
+.sheet .emp{font-size:14px;color:var(--ink-500);margin-top:3px;margin-bottom:16px}
+.detail{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--ink-100)}
+.detail__label{width:100px;flex-shrink:0;font-size:13px;color:var(--ink-400)}
+.detail__value{font-size:14px;font-weight:500;flex:1}
+.desc{font-size:14px;color:var(--ink-600);line-height:1.8;margin:16px 0}
+.apply{display:block;width:100%;height:50px;border:0;border-radius:12px;background:var(--teal-500);color:#fff;font-family:var(--ar);font-size:16px;font-weight:700;cursor:pointer;margin-top:8px}
+.apply:hover{background:var(--teal-600)}
+.disclaimer{font-size:11px;color:var(--ink-400);text-align:center;margin-top:12px;line-height:1.6}
+
+.fp{position:fixed;inset:0;background:rgba(18,26,36,.5);display:none;z-index:45;align-items:flex-end;justify-content:center}
+.fp.show{display:flex}
+.fp__panel{background:var(--surface);border-radius:20px 20px 0 0;padding:20px;width:100%;max-width:640px}
+.fp__panel h3{font-size:16px;font-weight:700;margin-bottom:14px}
+.opts{display:flex;gap:8px;flex-wrap:wrap}
+.opt{padding:9px 15px;border:1px solid var(--ink-200);border-radius:999px;font-size:14px;cursor:pointer;background:var(--surface);font-family:var(--ar)}
+.opt.sel{border-color:var(--teal-500);background:var(--teal-50);color:var(--teal-700);font-weight:500}
+.fp__done{width:100%;height:46px;border:0;border-radius:10px;background:var(--teal-500);color:#fff;font-weight:700;font-family:var(--ar);font-size:15px;margin-top:18px;cursor:pointer}
+
+footer{text-align:center;padding:20px;font-size:11px;color:var(--ink-400);border-top:1px solid var(--hairline)}
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="brand">
+      <svg width="26" height="26" viewBox="0 0 100 100" aria-hidden="true">
+        <path d="M62 24C42 12 20 24 20 44c0 15 13 22 27 22" stroke="#10B5A6" stroke-width="16" stroke-linecap="round" fill="none"/>
+        <path d="M38 76c20 12 42 0 42-20 0-15-13-22-27-22" stroke="#10B5A6" stroke-width="16" stroke-linecap="round" fill="none"/>
+      </svg>
+      <b>صلة</b>
+    </div>
+    <a class="back" href="index.html">الرئيسية ←</a>
+  </header>
+
+  <div class="intro">
+    <h1>وظائف الصيادلة</h1>
+    <p>فرص عمل موثّقة، مع بحث وفلترة. كل وظيفة موثّقة تحققنا من صاحبها.</p>
+  </div>
+
+  <div class="searchrow">
+    <div class="searchbar">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8FA0AC" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>
+      <input id="q" type="text" inputmode="search" autocomplete="off" placeholder="ابحث بالمسمى أو جهة العمل أو المنطقة" aria-label="بحث">
+    </div>
+  </div>
+
+  <div class="filters" id="filters">
+    <button class="fbtn" data-f="gov">المحافظة <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+    <button class="fbtn" data-f="etype">جهة العمل <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+    <button class="fbtn" data-f="shift">الدوام <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+    <button class="fbtn" data-f="verified">موثّقة فقط</button>
+  </div>
+
+  <div class="count" id="count"></div>
+  <div class="list" id="list"></div>
+
+  <footer>صلة · نموذج أولي · وظائف تجريبية للعرض</footer>
+</div>
+
+<div class="sheet-bg" id="sheetBg"></div>
+<div class="sheet" id="sheet"></div>
+
+<div class="fp" id="fp">
+  <div class="fp__panel">
+    <h3 id="fpTitle"></h3>
+    <div class="opts" id="fpOpts"></div>
+    <button class="fp__done" id="fpDone">تم</button>
+  </div>
+</div>
+
+<script>
+const JOBS = [{"id": "JOB-001", "title": "صيدلاني/ة في صيدلية أهلية", "employer": "صيدلية النور", "etype": "صيدلية", "gov": "بغداد", "area": "الكرادة", "shift": "مسائي", "hours": "4 عصراً - 11 ليلاً", "days": "6 أيام، عدا الجمعة", "salary": 750000, "salary_txt": "", "gender": "لا يهم", "verified": true, "posted": "قبل يومين", "desc": "مطلوب صيدلاني/ة لصيدلية أهلية بالكرادة. خبرة سنة على الأقل. صرف وصفات ومتابعة مخزون."}, {"id": "JOB-002", "title": "صيدلاني مسؤول مخزن أدوية", "employer": "مخزن الرشيد للأدوية", "etype": "مخزن", "gov": "بغداد", "area": "باب المعظم", "shift": "صباحي", "hours": "9 صباحاً - 4 عصراً", "days": "دوام كامل", "salary": 1000000, "salary_txt": "", "gender": "ذكر", "verified": true, "posted": "قبل 3 أيام", "desc": "مخزن أدوية مجاز يطلب صيدلاني مسؤول. إدارة المخزون، الطلبيات، والإشراف على الصرف بالجملة."}, {"id": "JOB-003", "title": "مندوب علمي - شركة أدوية", "employer": "شركة فارما لاين", "etype": "شركة", "gov": "البصرة", "area": "", "shift": "صباحي", "hours": "مرن", "days": "دوام كامل", "salary": 0, "salary_txt": "راتب + عمولة", "gender": "لا يهم", "verified": true, "posted": "قبل أسبوع", "desc": "مطلوب مندوب علمي لتغطية منطقة البصرة. يفضّل خريج صيدلة. سيارة ومحروقات مؤمنة."}, {"id": "JOB-004", "title": "صيدلانية دوام جزئي", "employer": "صيدلية الحياة", "etype": "صيدلية", "gov": "أربيل", "area": "عنكاوا", "shift": "مسائي", "hours": "5 عصراً - 10 ليلاً", "days": "3 أيام أسبوعياً", "salary": 400000, "salary_txt": "", "gender": "أنثى", "verified": false, "posted": "قبل يوم", "desc": "صيدلية تطلب صيدلانية لدوام جزئي مسائي. مناسبة للطالبات أو للي تبحث دوام مرن."}, {"id": "JOB-005", "title": "صيدلاني مستشفى", "employer": "مستشفى ابن سينا الأهلي", "etype": "مستشفى", "gov": "بغداد", "area": "المنصور", "shift": "مناوبات", "hours": "مناوبات 8 ساعات", "days": "دوام كامل بالتناوب", "salary": 1200000, "salary_txt": "", "gender": "لا يهم", "verified": true, "posted": "قبل 4 أيام", "desc": "مستشفى أهلي يطلب صيدلاني سريري. خبرة بصيدلة المستشفيات. رواتب ومحفزات."}, {"id": "JOB-006", "title": "صيدلاني/ة حديث التخرج", "employer": "صيدلية الشفاء", "etype": "صيدلية", "gov": "النجف", "area": "", "shift": "صباحي", "hours": "8 صباحاً - 2 ظهراً", "days": "6 أيام", "salary": 500000, "salary_txt": "", "gender": "لا يهم", "verified": true, "posted": "اليوم", "desc": "فرصة لخريج جديد. تدريب على العمل. مطلوب حماس واستعداد للتعلم."}];
+const $ = s => document.querySelector(s);
+const list = $("#list");
+
+const state = { q:"", gov:null, etype:null, shift:null, verified:false };
+const opts = {
+  gov: [...new Set(JOBS.map(j=>j.gov))],
+  etype: [...new Set(JOBS.map(j=>j.etype))],
+  shift: [...new Set(JOBS.map(j=>j.shift))],
+};
+const labels = { gov:"المحافظة", etype:"جهة العمل", shift:"نوع الدوام" };
+
+function fmtSalary(j){
+  if(j.salary_txt) return j.salary_txt;
+  if(j.salary>0) return j.salary.toLocaleString("en-US") + " د.ع";
+  return "الراتب عند المقابلة";
+}
+
+function apply(){
+  let out = JOBS.filter(j=>{
+    if(state.gov && j.gov!==state.gov) return false;
+    if(state.etype && j.etype!==state.etype) return false;
+    if(state.shift && j.shift!==state.shift) return false;
+    if(state.verified && !j.verified) return false;
+    if(state.q){
+      const t = state.q.toLowerCase();
+      const hay = (j.title+" "+j.employer+" "+j.gov+" "+j.area+" "+j.etype).toLowerCase();
+      if(!hay.includes(t)) return false;
+    }
+    return true;
+  });
+  render(out);
+}
+
+function render(jobs){
+  $("#count").textContent = jobs.length + " وظيفة";
+  if(!jobs.length){
+    list.innerHTML = `<div class="state"><h3>ماكو وظائف مطابقة</h3><p>جرّب تغيير الفلاتر أو كلمة البحث.</p></div>`;
+    return;
+  }
+  list.innerHTML = jobs.map(j=>`
+    <div class="job" data-id="${j.id}">
+      <div class="job__top">
+        <div>
+          <div class="job__title">${j.title}</div>
+          <div class="job__employer">${j.employer}${j.area?" · "+j.area:""}</div>
+        </div>
+        ${j.verified
+          ? `<span class="verified"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>موثّقة</span>`
+          : `<span class="unverified">غير موثّقة</span>`}
+      </div>
+      <div class="tags">
+        <span class="tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>${j.gov}</span>
+        <span class="tag tag--type">${j.etype}</span>
+        <span class="tag">${j.shift}</span>
+        <span class="tag tag--salary">${fmtSalary(j)}</span>
+      </div>
+      <div class="job__foot">
+        <span class="job__posted">${j.posted}</span>
+        <span class="job__more">التفاصيل ←</span>
+      </div>
+    </div>`).join("");
+}
+
+// open detail
+list.addEventListener("click", e=>{
+  const card = e.target.closest(".job"); if(!card) return;
+  const j = JOBS.find(x=>x.id===card.dataset.id);
+  openSheet(j);
+});
+
+function openSheet(j){
+  const rows = [
+    ["جهة العمل", j.employer],
+    ["النوع", j.etype],
+    ["المحافظة", j.gov + (j.area?" · "+j.area:"")],
+    ["الدوام", j.shift],
+    ["الساعات", j.hours],
+    ["الأيام", j.days],
+    ["الراتب", fmtSalary(j)],
+  ];
+  if(j.gender && j.gender!=="لا يهم") rows.push(["ملاحظة", "الجهة تفضّل: "+j.gender]);
+  $("#sheet").innerHTML = `
+    <div class="sheet__grip"></div>
+    <h2>${j.title}</h2>
+    <div class="emp">${j.verified?'✓ وظيفة موثّقة من صلة':'وظيفة غير موثّقة — تحقق بنفسك'}</div>
+    ${rows.map(r=>`<div class="detail"><div class="detail__label">${r[0]}</div><div class="detail__value">${r[1]}</div></div>`).join("")}
+    <div class="desc">${j.desc}</div>
+    <button class="apply" onclick="alert('نموذج التقديم يجي قريباً. حالياً التواصل مع صاحب الإعلان مباشرة.')">قدّم على الوظيفة</button>
+    <div class="disclaimer">صلة تعرض الوظائف وتتحقق من أصحابها قدر الإمكان، لكنها ليست طرفاً في التوظيف. تحقق دائماً قبل أي التزام مالي.</div>
+  `;
+  $("#sheet").classList.add("show"); $("#sheetBg").classList.add("show");
+}
+function closeSheet(){ $("#sheet").classList.remove("show"); $("#sheetBg").classList.remove("show"); }
+$("#sheetBg").addEventListener("click", closeSheet);
+
+// search
+let t;
+$("#q").addEventListener("input", e=>{ clearTimeout(t); t=setTimeout(()=>{ state.q=e.target.value; apply(); },200); });
+
+// filters
+$("#filters").addEventListener("click", e=>{
+  const b = e.target.closest(".fbtn"); if(!b) return;
+  const f = b.dataset.f;
+  if(f==="verified"){ state.verified=!state.verified; b.classList.toggle("active", state.verified); apply(); return; }
+  openFilterPicker(f, b);
+});
+
+let activeFilter=null, activeBtn=null;
+function openFilterPicker(f, btn){
+  activeFilter=f; activeBtn=btn;
+  $("#fpTitle").textContent = labels[f];
+  const cur = state[f];
+  $("#fpOpts").innerHTML = `<button class="opt ${cur===null?'sel':''}" data-v="">الكل</button>` +
+    opts[f].map(o=>`<button class="opt ${cur===o?'sel':''}" data-v="${o}">${o}</button>`).join("");
+  $("#fp").classList.add("show");
+}
+$("#fpOpts").addEventListener("click", e=>{
+  const o = e.target.closest(".opt"); if(!o) return;
+  $("#fpOpts").querySelectorAll(".opt").forEach(x=>x.classList.remove("sel"));
+  o.classList.add("sel");
+  const v = o.dataset.v;
+  state[activeFilter] = v==="" ? null : v;
+});
+$("#fpDone").addEventListener("click", ()=>{
+  $("#fp").classList.remove("show");
+  activeBtn.classList.toggle("active", state[activeFilter]!==null);
+  if(state[activeFilter]!==null){
+    activeBtn.childNodes[0].textContent = state[activeFilter] + " ";
+  } else {
+    activeBtn.childNodes[0].textContent = labels[activeFilter] + " ";
+  }
+  apply();
+});
+$("#fp").addEventListener("click", e=>{ if(e.target.id==="fp") $("#fp").classList.remove("show"); });
+
+apply();
+</script>
+</body>
+</html>
