@@ -244,10 +244,28 @@ function openSheet(j){
     <div class="emp">${j.verified?'✓ وظيفة موثّقة من صلة':'وظيفة غير موثّقة — تحقق بنفسك'}</div>
     ${rows.map(r=>`<div class="detail"><div class="detail__label">${r[0]}</div><div class="detail__value">${r[1]}</div></div>`).join("")}
     <div class="desc">${j.desc}</div>
-    <button class="apply" onclick="alert('نموذج التقديم يجي قريباً. حالياً التواصل مع صاحب الإعلان مباشرة.')">قدّم على الوظيفة</button>
+    ${j.contact?`<button class="apply" onclick="applyJob('${j.contact}')">قدّم على الوظيفة</button>`:`<button class="apply" style="background:var(--ink-300)" disabled>لا توجد وسيلة تواصل</button>`}
+    <button class="apply" style="background:var(--surface);color:var(--teal-700);border:1px solid var(--teal-500);margin-top:8px" onclick="copyJobLink('${j.id}')">📋 انسخ رابط الوظيفة للنشر</button>
     <div class="disclaimer">صلة تعرض الوظائف وتتحقق من أصحابها قدر الإمكان، لكنها ليست طرفاً في التوظيف. تحقق دائماً قبل أي التزام مالي.</div>
   `;
   $("#sheet").classList.add("show"); $("#sheetBg").classList.add("show");
+}
+function applyJob(contact){
+  // route by contact type
+  if(contact.includes("@") && contact.includes(".")){ // email
+    location.href = "mailto:" + contact + "?subject=" + encodeURIComponent("تقديم على وظيفة عبر صلة");
+  } else if(contact.startsWith("@")){ // telegram
+    window.open("https://t.me/" + contact.slice(1), "_blank");
+  } else { // phone -> whatsapp
+    const num = contact.replace(/[^0-9]/g,"").replace(/^0/,"964");
+    window.open("https://wa.me/" + num, "_blank");
+  }
+}
+function copyJobLink(id){
+  const url = location.origin + location.pathname + "?job=" + id;
+  navigator.clipboard.writeText(url).then(()=>{
+    alert("تم نسخ الرابط:\n" + url + "\n\nالصقه بمنشور القناة.");
+  }).catch(()=>{ prompt("انسخ الرابط:", url); });
 }
 function closeSheet(){ $("#sheet").classList.remove("show"); $("#sheetBg").classList.remove("show"); }
 $("#sheetBg").addEventListener("click", closeSheet);
@@ -293,6 +311,12 @@ $("#fpDone").addEventListener("click", ()=>{
 $("#fp").addEventListener("click", e=>{ if(e.target.id==="fp") $("#fp").classList.remove("show"); });
 
 apply();
+
+// ── deep link: jobs.html?job=JOB-005 opens that job directly ──
+(function(){
+  const p = new URLSearchParams(location.search).get("job");
+  if(p){ const j = JOBS.find(x=>x.id===p); if(j) openSheet(j); }
+})();
 </script>
 </body>
 </html>
